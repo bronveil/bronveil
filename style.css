@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;500&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+background:black;
+color:white;
+overflow:hidden;
+}
+
+/* ---------------- PAGE SYSTEM ---------------- */
+
+.page{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:40px;
+overflow:hidden;
+}
+
+#intro{
+justify-content:center;
+}
+
+#main{
+justify-content:flex-start;
+}
+
+.page.active{
+display:flex;
+animation:fade 1s ease;
+}
+
+.scroll{
+overflow-y:auto;
+height:100vh;
+padding-top:140px;
+padding-bottom:80px;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* ---------------- INTRO ---------------- */
+
+#introVideo,
+.mainVideo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+}
+
+
+#typeText{
+font-family:Cinzel;
+font-size:90px;
+letter-spacing:10px;
+}
+
+.tagline{
+margin-top:10px;
+opacity:0.7;
+}
+
+.enterBtn{
+margin-top:40px;
+padding:14px 40px;
+border:none;
+border-radius:30px;
+background:#8a2cff;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.enterBtn:hover{
+box-shadow:0 0 20px #8a2cff;
+}
+
+.intro-copy{
+position:absolute;
+bottom:20px;
+opacity:0.6;
+}
+
+/* ---------------- MAIN PAGE VIDEO ---------------- */
+
+#main{
+position:relative;
+}
+
+.mainVideo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+}
+
+/* ---------------- CONTENT ---------------- */
+
+.section-title{
+font-family:Cinzel;
+font-size:55px;
+margin-bottom:10px;
+}
+
+.mini-line{
+opacity:0.7;
+margin-bottom:40px;
+}
+
+.platforms{
+display:flex;
+justify-content:center;
+margin-bottom:60px;
+}
+
+.platform-card{
+background:none;
+padding:0;
+width:auto;
+}
+
+.yt-link{
+display:inline-block;
+}
+
+.yt-logo{
+width:65px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.yt-logo:hover{
+transform:scale(1.1);
+}
+
+
+.platform-card p{
+font-size:13px;
+opacity:0.7;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.toggleBtn{
+background:rgba(0,0,0,0.6);
+border:none;
+padding:12px 32px;
+border-radius:30px;
+color:white;
+cursor:pointer;
+margin:20px;
+}
+
+.toggleBtn:hover{
+box-shadow:0 0 20px #8a2cff;
+}
+
+/* ---------------- PANELS ---------------- */
+
+.panel{
+display:none;
+max-width:700px;
+line-height:1.7;
+opacity:0.8;
+margin-bottom:50px;
+}
+
+/* ---------------- QUOTE ---------------- */
+
+.quote{
+font-style:italic;
+opacity:0.7;
+margin-top:30px;
+margin-bottom:20px;
+}
+
+/* ---------------- BACK BUTTON ---------------- */
+
+#backBtn{
+position:fixed;
+top:20px;
+right:20px;
+width:38px;
+height:38px;
+border-radius:50%;
+border:none;
+background:rgba(0,0,0,0.6);
+color:white;
+cursor:pointer;
+z-index:999;
+}
+
+/* ---------------- PET ---------------- */
+
+#pet{
+position:fixed;
+width:96px;
+height:96px;
+background-size:contain;
+background-repeat:no-repeat;
+pointer-events:none;
+z-index:9999;
+}
+
+
+#typeText{
+animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe{
+0%{text-shadow:0 0 10px #8a2cff;}
+50%{text-shadow:0 0 30px #ff4fc3;}
+100%{text-shadow:0 0 10px #8a2cff;}
+}
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+.yt-logo{
+animation:pulseYT 3s infinite;
+}
+
+@keyframes pulseYT{
+0%{filter:drop-shadow(0 0 0 red);}
+50%{filter:drop-shadow(0 0 12px red);}
+100%{filter:drop-shadow(0 0 0 red);}
+}
+
+.reveal{
+opacity:0;
+transform:translateY(30px);
+transition:0.9s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+.glow{
+box-shadow:
+0 0 20px rgba(168,85,255,0.35),
+0 0 40px rgba(255,79,195,0.25);
+border-radius:40px;
+}
+
+#typeText{
+animation:floatTitle 6s ease-in-out infinite;
+}
+
+@keyframes floatTitle{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+.enterBtn,
+.toggleBtn{
+transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.enterBtn:hover,
+.toggleBtn:hover{
+transform:translateY(-4px) scale(1.03);
+}
+
+
+body{
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}

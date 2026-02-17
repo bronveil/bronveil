@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRONVEIL</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<button id="backBtn" onclick="goIntro()" style="display:none;">⟵</button>
+
+<!-- PET -->
+<div id="pet"></div>
+
+<!-- INTRO PAGE -->
+<section id="intro" class="page active">
+
+<!-- BACKGROUND VIDEO -->
+<video id="introVideo" autoplay muted loop>
+  <source src="videos/intro1.mp4" type="video/mp4">
+</video>
+
+
+<h1 id="typeText"></h1>
+
+<p class="tagline">A Music Studio From Another World</p>
+
+<button class="enterBtn glow" onclick="enterWorld()">ENTER MUSIC WORLD</button>
+
+<p class="intro-copy">© 2026 BRONVEIL. All Rights Reserved.</p>
+
+</section>
+
+<!-- MAIN PAGE -->
+<section id="main" class="page scroll">
+
+  <video class="mainVideo" autoplay muted loop>
+  <source src="videos/intro.mp4" type="video/mp4">
+</video>
+
+
+  <video class="mainVideo" autoplay muted loop>
+  <source src="videos/main.mp4" type="video/mp4">
+</video>
+
+
+<div class="content-wrap">
+
+<h2 class="section-title">Find Us On</h2>
+<p class="mini-line">Official Platforms</p>
+
+<div class="platforms reveal">
+<div class="platform-card">
+  <a href="https://www.youtube.com/@bronveil" target="_blank" class="yt-link">
+    <svg class="yt-logo" viewBox="0 0 576 512">
+      <path fill="red"
+      d="M549.7 124.1c-6.3-23.6-24.8-42.2-48.4-48.5C458.9 64 288 64 288 64s-170.9 0-213.3 11.6c-23.6 6.3-42.2 24.9-48.4 48.5C14.7 166.4 14.7 256 14.7 256s0 89.6 11.6 131.9c6.3 23.6 24.8 42.2 48.4 48.5C117.1 448 288 448 288 448s170.9 0 213.3-11.6c23.6-6.3 42.2-24.9 48.4-48.5 11.6-42.3 11.6-131.9 11.6-131.9s0-89.6-11.6-131.9z"/>
+      <path fill="white" d="M232 336l142-80-142-80z"/>
+    </svg>
+  </a>
+</div>
+
+</div>
+
+<button class="toggleBtn glow reveal" onclick="togglePanel('copyrightPanel')">
+Copyright Info
+</button>
+
+<div id="copyrightPanel" class="panel">
+<p>© 2026 BRONVEIL</p>
+<p>All music is original and protected.</p>
+<p>Unauthorized use or redistribution is prohibited.</p>
+</div>
+
+<button class="toggleBtn glow reveal" onclick="togglePanel('aboutPanel')">
+About Us
+</button>
+
+<div id="aboutPanel" class="panel">
+<p>
+BRONVEIL creates emotional, spiritual, folk and energetic music.
+We make music to express feelings, connect souls and tell unseen stories.
+</p>
+</div>
+
+<div class="quote reveal">
+“Music is the voice of the unseen.”
+</div>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+<script src="pet.js"></script>
+
+</body>
+</html>
