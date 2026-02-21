@@ -298,3 +298,67 @@ transform:translateY(-4px) scale(1.03);
 body{
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
 }
+
+/* ========================= */
+/* 📱 MOBILE OPTIMIZATION */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Intro section */
+  .intro-container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .intro-container h1 {
+    font-size: 36px !important;
+    letter-spacing: 3px;
+  }
+
+  .intro-container p {
+    font-size: 14px;
+  }
+
+  .logo-text {
+  font-size: 40px !important;
+}
+  .enter-btn {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+
+  /* Platforms section */
+  .platforms-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .platform-card {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Buttons spacing */
+  .info-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Quote */
+  .music-quote {
+    font-size: 16px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  /* Pet size smaller on mobile */
+  #pet {
+    transform: scale(0.7);
+  }
+
+}
