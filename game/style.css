@@ -2,17 +2,30 @@ body{
 margin:0;
 background:black;
 color:white;
-font-family:sans-serif;
+font-family:Poppins;
 overflow:hidden;
 }
 
-/* GAME LAYOUT */
-#game{
+/* LAYOUT */
+#layout{
+display:flex;
 height:100vh;
-position:relative;
-overflow:hidden;
 }
 
+#songs, #leaderboard{
+width:18%;
+padding:15px;
+background:rgba(255,255,255,0.05);
+overflow:auto;
+}
+
+#game{
+width:64%;
+position:relative;
+height:100vh;
+}
+
+/* LANES */
 #lanes{
 display:flex;
 height:100%;
@@ -21,6 +34,7 @@ height:100%;
 .lane{
 flex:1;
 border:1px solid rgba(255,255,255,0.1);
+position:relative;
 display:flex;
 justify-content:center;
 align-items:flex-end;
@@ -32,12 +46,13 @@ margin-bottom:20px;
 opacity:0.7;
 }
 
-/* NOTE */
+/* NOTES */
 .note{
 position:absolute;
 width:70%;
 height:20px;
 background:#8a2cff;
+top:-20px;
 left:15%;
 border-radius:6px;
 }
@@ -45,42 +60,59 @@ border-radius:6px;
 /* HIT LINE */
 #hitLine{
 position:absolute;
-bottom:100px;
+bottom:120px;
 width:100%;
-height:5px;
+height:4px;
 background:white;
-box-shadow:0 0 10px white;
+z-index:5;
 }
 
 /* UI */
-#score{position:fixed;top:120px;left:10px;}
-#highScore{position:fixed;top:120px;right:10px;}
+#score{
+position:absolute;
+top:20px;
+left:20px;
+font-size:20px;
+}
+
+#highScore{
+position:absolute;
+top:20px;
+right:20px;
+font-size:20px;
+}
 
 #combo{
-position:fixed;
-top:50%;
+position:absolute;
+top:45%;
 left:50%;
 transform:translateX(-50%);
-font-size:30px;
+font-size:48px;
 color:#8a2cff;
 }
 
+#combo.hide{opacity:0;}
+
 #feedback{
-position:fixed;
-top:40%;
+position:absolute;
+top:35%;
 left:50%;
 transform:translateX(-50%);
+font-size:30px;
+opacity:0;
+transition:0.3s;
 }
 
 /* START */
 #startScreen{
-position:fixed;
+position:absolute;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%);
+transform:translate(-50%, -50%);
+z-index:10;
 display:flex;
 flex-direction:column;
-gap:10px;
+gap:12px;
 }
 
 /* SETTINGS */
@@ -88,54 +120,34 @@ gap:10px;
 position:fixed;
 top:10px;
 left:10px;
+z-index:999;
 display:flex;
-gap:10px;
-z-index:1000;
+gap:6px;
 }
 
-/* SONG DROPDOWN */
-#songDropdown{
+/* HELP */
+#helpBtn{
 position:fixed;
-top:60px;
-left:50%;
-transform:translateX(-50%);
-z-index:1000;
-padding:10px;
-border-radius:20px;
-background:#111;
+top:55px;
+right:20px;
+z-index:999;
+width:35px;
+height:35px;
+border-radius:50%;
+border:none;
+background:#8a2cff;
 color:white;
-border:1px solid #8a2cff;
+cursor:pointer;
 }
 
-/* LEADERBOARD */
-#leaderboard{
+#backBtn{
 position:fixed;
-right:0;
-top:150px;
-width:200px;
-background:#111;
-padding:10px;
-max-height:300px;
-overflow:auto;
+top:10px;
+right:20px;
+z-index:999;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-
-#leaderboard{
-width:100%;
-bottom:0;
-top:auto;
-max-height:200px;
-}
-
+/* SONG DROPDOWN (HIDDEN ON DESKTOP) */
 #songDropdown{
-top:80px;
-}
-
-#settings{
-left:50%;
-transform:translateX(-50%);
-}
-
+display:none;
 }
