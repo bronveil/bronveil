@@ -13,7 +13,7 @@
   <button onclick="restartGame()">⟳</button>
   <input type="range" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
 </div>
-
+<button id="leaderBtn">🏆</button>
 <button id="backBtn" onclick="goBack()">⟵ Back</button>
 
 <button id="helpBtn">?</button>
@@ -86,7 +86,10 @@
 </div>
 
 </div>
-
+<div id="leaderPanel">
+  <h3>Leaderboard</h3>
+  <ul id="leaderListMobile"></ul>
+</div>
 <audio id="audio" loop></audio>
 
 <script src="script.js"></script>
