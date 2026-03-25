@@ -12,9 +12,17 @@ let usedNames = JSON.parse(localStorage.getItem("usedNames")) || [];
 
 // 🎵 SAFE SONG DETECTOR (VERY IMPORTANT)
 function getCurrentSong(){
-  if(!audio.src) return "unknown";
+  const dropdown = document.getElementById("songDropdown");
 
-  return audio.src.split("/").pop().split("?")[0];
+  if(dropdown && dropdown.value){
+    return dropdown.value;
+  }
+
+  if(audio.src){
+    return audio.src.split("/").pop().split("?")[0];
+  }
+
+  return "song1.mp3"; // fallback
 }
 
 
@@ -344,47 +352,42 @@ async function loadLeaderboard(){
 
   const song = getCurrentSong();
 
-  const res = await fetch("https://bronveil-server.onrender.com/leaderboard");
-  const data = await res.json();
+  try{
+    const res = await fetch(`https://bronveil-server.onrender.com/leaderboard?song=${song}`);
+    const data = await res.json();
 
-  const ul = document.getElementById("leaderList");
-  ul.innerHTML = "";
+    const ul = document.getElementById("leaderList");
+    ul.innerHTML = "";
 
-  // 🎯 If no song selected → show all
-  let filtered = data;
-
-  if(song !== "unknown"){
-    filtered = data.filter(p => p.song === song);
-  }
-
-  if(filtered.length === 0){
-    ul.innerHTML = "<li>No scores yet</li>";
-    return;
-  }
-
-  filtered.forEach((p, index)=>{
-    const li = document.createElement("li");
-
-    li.innerHTML = `
-      <span>#${index+1} ${p.name}</span>
-      <span>${p.score} 🔥${p.streak || 0} ⭐${p.mmr || 0}</span>
-    `;
-
-    if(index === 0) li.classList.add("top1");
-    if(index === 1) li.classList.add("top2");
-    if(index === 2) li.classList.add("top3");
-
-    if(p.name === currentUser){
-      li.classList.add("me");
+    if(!data || data.length === 0){
+      ul.innerHTML = "<li>No scores yet</li>";
+      return;
     }
 
-    ul.appendChild(li);
-  });
+    data.forEach((p, index)=>{
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <span>#${index+1} ${p.name}</span>
+        <span>${p.score} 🔥${p.streak || 0} ⭐${p.mmr || 0}</span>
+      `;
+
+      if(index === 0) li.classList.add("top1");
+      if(index === 1) li.classList.add("top2");
+      if(index === 2) li.classList.add("top3");
+
+      if(p.name === currentUser){
+        li.classList.add("me");
+      }
+
+      ul.appendChild(li);
+    });
+
+  }catch(e){
+    console.log("Leaderboard error:", e);
+  }
 }
 
-if(finalScore > 50){
-  sendScore(finalScore);
-}
 
 setInterval(()=>{
   loadLeaderboard();
@@ -400,17 +403,20 @@ const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
 
-  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+  dropdown.innerHTML = "";
 
-  songs.forEach(s=>{
-    const opt = document.createElement("option");
-    opt.value = s;
-    opt.innerText = s.replace(".mp3",""); // cleaner name
-    dropdown.appendChild(opt);
-  });
+songs.forEach((s, i)=>{
+  const opt = document.createElement("option");
+  opt.value = s;
+  opt.innerText = s.replace(".mp3","");
+  if(i === 0) opt.selected = true;
+  dropdown.appendChild(opt);
+});
 
-  dropdown.onchange = ()=>{
-    audio.src = "songs/" + dropdown.value;
-    loadLeaderboard();
-  };
+audio.src = "songs/" + songs[0];
+
+dropdown.onchange = ()=>{
+  audio.src = "songs/" + dropdown.value;
+  loadLeaderboard();
+};
 }
