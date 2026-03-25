@@ -156,9 +156,17 @@ overflow-y:auto;
 #leaderPanel.open{
 left:0;
 }
-#leaderBtn,
-#leaderPanel{
-display:block;
+
+@media (max-width:768px){
+
+  #leaderBtn{
+    display:block;
+  }
+
+  #leaderPanel{
+    display:block;
+  }
+
 }
 
 #closeLeader{
