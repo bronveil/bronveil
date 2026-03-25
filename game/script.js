@@ -408,8 +408,8 @@ if(dropdown){
     dropdown.appendChild(opt);
   });
 
-  dropdown.addEventListener("change", ()=>{
+  dropdown.onchange = ()=>{
     audio.src = "songs/" + dropdown.value;
     loadLeaderboard();
-  });
+  };
 }
