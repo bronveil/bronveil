@@ -401,28 +401,23 @@ const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
 
-  function loadSongsToDropdown(){
-    dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
-    console.log("Songs loaded:", songs);
+  dropdown.innerHTML = "";
 
-    songs.forEach(s=>{
-      const opt = document.createElement("option");
-      opt.value = s;
-      opt.innerText = s.replace(".mp3","");
-      dropdown.appendChild(opt);
-    });
-  }
+  songs.forEach(s=>{
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s.replace(".mp3","");
+    dropdown.appendChild(opt);
+  });
 
-  // load once
-loadSongsToDropdown();
+  // default select first song (important)
+  audio.src = "game/songs/" + songs[0];
 
-// 🔥 ensure refresh on mobile tap
-dropdown.addEventListener("click", loadSongsToDropdown);
-  
   dropdown.onchange = ()=>{
     audio.src = "game/songs/" + dropdown.value;
     loadLeaderboard();
   };
+
 }
 // MOBILE LEADERBOARD TOGGLE
 const leaderToggle = document.getElementById("leaderToggle");
