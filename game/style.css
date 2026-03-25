@@ -792,3 +792,44 @@ z-index:1;
   }
 
 }
+
+/* ========================= */
+/* 📱 MOBILE LEADERBOARD BUTTON */
+/* ========================= */
+
+#leaderToggle{
+display:none;
+position:fixed;
+top:100px;
+right:15px;
+z-index:999;
+width:40px;
+height:40px;
+border-radius:50%;
+background:#8a2cff;
+color:white;
+border:none;
+}
+
+/* MOBILE ONLY */
+@media(max-width:768px){
+
+  #leaderToggle{
+    display:block;
+  }
+
+  #leaderboard{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:80%;
+    height:100%;
+    z-index:1000;
+    transition:0.3s;
+  }
+
+  #leaderboard.open{
+    right:0;
+  }
+
+}
