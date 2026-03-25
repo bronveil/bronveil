@@ -398,27 +398,35 @@ function goBack(){
 
 
 // 🎵 MOBILE SONG DROPDOWN FIX
-document.addEventListener("DOMContentLoaded", () => {
+/* SONGS */
+const songs = ["song1.mp3","song2.mp3","song3.mp3","song4.mp3"];
 
-  const dropdown = document.getElementById("songDropdown");
+const dropdown = document.getElementById("songDropdown");
 
-  if(dropdown){
+/* 🔥 FORCE LOAD DROPDOWN AFTER PAGE LOAD */
+window.addEventListener("load", ()=>{
 
-    dropdown.innerHTML = `<option disabled selected>🎵 Songs</option>`;
+  if(!dropdown) return;
 
-    songs.forEach(s=>{
-      const opt = document.createElement("option");
-      opt.value = s;
-      opt.textContent = s.replace(".mp3","");
-      dropdown.appendChild(opt);
-    });
+  dropdown.innerHTML = "";
 
-    dropdown.addEventListener("change", ()=>{
-      audio.src = "songs/" + dropdown.value;
-      loadLeaderboard();
-    });
+  const def = document.createElement("option");
+  def.textContent = "🎵 Songs";
+  def.disabled = true;
+  def.selected = true;
+  dropdown.appendChild(def);
 
-  }
+  songs.forEach(s=>{
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s.replace(".mp3","");
+    dropdown.appendChild(opt);
+  });
+
+  dropdown.addEventListener("change", ()=>{
+    audio.src = "songs/" + dropdown.value;
+    loadLeaderboard();
+  });
 
 });
 
