@@ -53,10 +53,10 @@ document.getElementById("startBtn").onclick = ()=>{
     return;
   }
 
-  if(!audio.src){
-    alert("Select a song first");
-    return;
-  }
+  if(!dropdown.value){
+  alert("Select a song first");
+  return;
+}
 
   if(usedNames.includes(name) && currentUser !== name){
     alert("Name already taken");
@@ -281,13 +281,13 @@ else if(diff < 60){
   showFeedback("MISS");
 }
 
-  const comboEl = document.getElementById("combo");
+ const comboEl = document.getElementById("combo");
 
-// show only if combo >= 3
 if(combo >= 3){
   comboEl.innerText = combo + "x";
   comboEl.classList.remove("hide");
 }else{
+  comboEl.innerText = "";
   comboEl.classList.add("hide");
 }
 
@@ -407,13 +407,12 @@ const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
 
-  dropdown.innerHTML = "";
+  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
 
-songs.forEach((s, i)=>{
+songs.forEach(s=>{
   const opt = document.createElement("option");
   opt.value = s;
   opt.innerText = s.replace(".mp3","");
-  if(i === 0) opt.selected = true;
   dropdown.appendChild(opt);
 });
 
