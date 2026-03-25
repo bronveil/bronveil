@@ -414,3 +414,12 @@ if(dropdown){
     loadLeaderboard();
   };
 }
+// MOBILE LEADERBOARD TOGGLE
+const leaderToggle = document.getElementById("leaderToggle");
+const leaderboard = document.getElementById("leaderboard");
+
+if(leaderToggle){
+  leaderToggle.onclick = ()=>{
+    leaderboard.classList.toggle("open");
+  };
+}
