@@ -497,6 +497,8 @@ display:none;
   }
 
    #leaderToggle{
+     top:120px;
+     left:10px; /* move left side */
     display:block;
   }
 
@@ -568,7 +570,7 @@ display:none;
   /* START SCREEN */
   #startScreen{
     width:90%;
-    top:55%;
+    top:42%;
   }
 
   /* BUTTONS */
