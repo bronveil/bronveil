@@ -156,3 +156,7 @@ overflow-y:auto;
 #leaderPanel.open{
 left:0;
 }
+#leaderBtn,
+#leaderPanel{
+display:block;
+}
