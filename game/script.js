@@ -32,6 +32,27 @@ document.getElementById("highScore").innerText = "Best: " + best;
 
 // ===== SONGS =====
 const songs = ["song1.mp3","song2.mp3","song3.mp3","song4.mp3"];
+// 🎵 MOBILE SONG DROPDOWN FIX
+const dropdown = document.getElementById("songDropdown");
+
+if(dropdown){
+
+  dropdown.innerHTML = `<option value="" disabled selected>Select Song</option>`;
+
+songs.forEach(s=>{
+  const opt = document.createElement("option");
+  opt.value = s;
+  opt.innerText = s.replace(".mp3","");
+  dropdown.appendChild(opt);
+});
+  
+dropdown.value = "";
+dropdown.onchange = ()=>{
+  audio.src = "songs/" + dropdown.value;
+  loadLeaderboard();
+};
+}
+
 const list = document.getElementById("songList");
 
 songs.forEach(s=>{
@@ -413,23 +434,3 @@ function goBack(){
 }
 
 
-// 🎵 MOBILE SONG DROPDOWN FIX
-const dropdown = document.getElementById("songDropdown");
-
-if(dropdown){
-
-  dropdown.innerHTML = `<option value="" disabled selected>Select Song</option>`;
-
-songs.forEach(s=>{
-  const opt = document.createElement("option");
-  opt.value = s;
-  opt.innerText = s.replace(".mp3","");
-  dropdown.appendChild(opt);
-});
-  
-
-dropdown.onchange = ()=>{
-  audio.src = "songs/" + dropdown.value;
-  loadLeaderboard();
-};
-}
