@@ -150,15 +150,11 @@ cursor:pointer;
 /* SETTINGS */
 #settings{
 position:fixed;
-top:50px; /* 🔥 push below browser bar */
-left:50%;
-transform:translateX(-50%);
+top:10px;
+left:10px; /* 👈 LEFT SIDE (desktop) */
 z-index:999;
 display:flex;
-gap:8px;
-background:rgba(0,0,0,0.5);
-padding:6px 10px;
-border-radius:20px;
+gap:6px;
 }
 
 /* HIT EFFECT */
