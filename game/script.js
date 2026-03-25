@@ -275,16 +275,19 @@ else if(diff < 60){
   combo = 0;
   score = 0;
 
+    document.getElementById("combo").classList.add("hide");
+
   showFeedback("MISS");
 }
 
   const comboEl = document.getElementById("combo");
 
-  if(combo >= 3){
-  comboEl.classList.add("show");
+// show only if combo >= 3
+if(combo >= 3){
   comboEl.innerText = combo + "x";
-} else {
-  comboEl.classList.remove("show");
+  comboEl.classList.remove("hide");
+}else{
+  comboEl.classList.add("hide");
 }
 
   document.getElementById("score").innerText = "Score: " + score;
