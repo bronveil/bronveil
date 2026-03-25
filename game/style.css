@@ -237,3 +237,12 @@ display:none;
 #leaderPanel{
 display:none;
 }
+
+@media (min-width:769px){
+
+  #leaderBtn,
+  #leaderPanel{
+    display:none !important;
+  }
+
+}
