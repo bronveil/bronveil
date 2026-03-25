@@ -413,6 +413,7 @@ if(dropdown){
 
   // 🔥 FORCE FIRST SONG
   audio.src = "game/songs/" + songs[0];
+  dropdown.value = songs[0]; // 🔥 THIS FIXES MOBILE EMPTY UI
 
   dropdown.onchange = ()=>{
     audio.src = "game/songs/" + dropdown.value;
