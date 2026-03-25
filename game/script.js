@@ -55,14 +55,13 @@ document.getElementById("startBtn").onclick = ()=>{
 
   const selectedSong = dropdown.value;
 
-if(!selectedSong || selectedSong === "Select Song"){
+if(!selectedSong || selectedSong.trim() === ""){
   alert("Select a song first");
   return;
 }
 
-// set song ONLY when starting
 audio.src = "songs/" + selectedSong;
-
+  
   if(usedNames.includes(name) && currentUser !== name){
     alert("Name already taken");
     return;
@@ -420,6 +419,7 @@ songs.forEach(s=>{
   opt.innerText = s.replace(".mp3","");
   dropdown.appendChild(opt);
 });
+  dropdown.value = "";
 
 dropdown.onchange = ()=>{
   audio.src = "songs/" + dropdown.value;
