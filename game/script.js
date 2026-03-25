@@ -268,6 +268,8 @@ else if(diff < 60){
   score = 0;
 
   showFeedback("MISS");
+
+    loadLeaderboard();
 }
 
   const comboEl = document.getElementById("combo");
@@ -396,25 +398,46 @@ function goBack(){
 
 
 // 🎵 MOBILE SONG DROPDOWN FIX
-const dropdown = document.getElementById("songDropdown");
+document.addEventListener("DOMContentLoaded", () => {
 
-if(dropdown){
-  dropdown.innerHTML = `<option disabled selected>🎵 Songs</option>`;
+  const dropdown = document.getElementById("songDropdown");
 
-  songs.forEach(s=>{
-    const opt = document.createElement("option");
-    opt.value = s;
-    opt.textContent = s.replace(".mp3","");
-    dropdown.appendChild(opt);
-  });
+  if(dropdown){
 
-  dropdown.onchange = ()=>{
-    audio.src = "songs/" + dropdown.value;
-    loadLeaderboard();
+    dropdown.innerHTML = `<option disabled selected>🎵 Songs</option>`;
+
+    songs.forEach(s=>{
+      const opt = document.createElement("option");
+      opt.value = s;
+      opt.textContent = s.replace(".mp3","");
+      dropdown.appendChild(opt);
+    });
+
+    dropdown.addEventListener("change", ()=>{
+      audio.src = "songs/" + dropdown.value;
+      loadLeaderboard();
+    });
+
+  }
+
+});
+
+const leaderBtn = document.getElementById("leaderBtn");
+const leaderPopup = document.getElementById("leaderPopup");
+const closeLeader = document.getElementById("closeLeader");
+
+if(leaderBtn){
+  leaderBtn.onclick = ()=>{
+    leaderPopup.classList.toggle("hide");
   };
 }
-  dropdown.onchange = ()=>{
-    audio.src = "songs/" + dropdown.value;
-    loadLeaderboard();
+
+if(closeLeader){
+  closeLeader.onclick = ()=>{
+    leaderPopup.classList.add("hide");
   };
 }
+
+window.onload = ()=>{
+  loadLeaderboard();
+};
