@@ -557,3 +557,44 @@ margin:8px 0;
   }
 
 }
+
+/* MOBILE SONG DROPDOWN */
+#songDropdown{
+display:none;
+margin:10px;
+padding:10px;
+border-radius:10px;
+background:black;
+color:white;
+border:1px solid #8a2cff;
+}
+
+/* SHOW ONLY ON MOBILE */
+@media (max-width:768px){
+  #songDropdown{
+    display:block;
+    width:90%;
+  }
+}
+
+@media (max-width:768px){
+
+  #score{
+    top:70px;
+    left:10px;
+    font-size:14px;
+  }
+
+  #highScore{
+    top:70px;
+    right:10px;
+    font-size:14px;
+  }
+
+}
+
+@media (max-width:768px){
+  h1, h2, h3{
+    word-wrap:break-word;
+  }
+}
