@@ -12,7 +12,6 @@ display:flex;
 height:100vh;
 }
 
-/* SIDE PANELS */
 #songs, #leaderboard{
 width:18%;
 padding:15px;
@@ -20,33 +19,11 @@ background:rgba(255,255,255,0.05);
 overflow:auto;
 }
 
-#songs h2, #leaderboard h2{
-font-size:22px;
-}
-
-/* GAME CENTER */
 #game{
 width:64%;
 position:relative;
-}
-
-
-#songDropdown{
-display:none;
-appearance:none;
--webkit-appearance:none;
-text-align:center;
-color:white;
-background:#111;
-}
-
-/* 📱 ONLY MOBILE FIX */
-@media (max-width:768px){
-
-  #game{
-    width:100%;
-  }
-
+height:100vh;
+overflow:hidden;
 }
 
 /* LANES */
@@ -58,7 +35,6 @@ height:100%;
 .lane{
 flex:1;
 border:1px solid rgba(255,255,255,0.1);
-position:relative;
 display:flex;
 justify-content:center;
 align-items:flex-end;
@@ -91,7 +67,7 @@ background:white;
 box-shadow:0 0 10px white;
 }
 
-/* TEXT UI */
+/* TEXT */
 #score{
 position:absolute;
 top:20px;
@@ -106,498 +82,111 @@ right:20px;
 font-size:20px;
 }
 
-#combo{
-position:absolute;
-top:45%;
-left:50%;
-transform:translateX(-50%);
-font-size:48px;
-color:#8a2cff;
-}
-
-#combo.hide{opacity:0;}
-
-#feedback{
-position:absolute;
-top:35%;
-left:50%;
-transform:translateX(-50%);
-font-size:30px;
-opacity:0;
-transition:0.3s;
-}
-
-/* START SCREEN */
+/* START */
 #startScreen{
 position:absolute;
-top:45%;
+top:50%;
 left:50%;
 transform:translate(-50%, -50%);
-z-index:10;
 display:flex;
 flex-direction:column;
 gap:12px;
+z-index:10;
 }
 
-#startScreen input{
-padding:12px;
-font-size:16px;
-border-radius:10px;
-border:none;
-}
-
+#startScreen input,
 #startScreen button{
 padding:12px;
-font-size:16px;
-background:#8a2cff;
-border:none;
 border-radius:10px;
-color:white;
-cursor:pointer;
+border:none;
 }
 
 /* SETTINGS */
 #settings{
 position:fixed;
 top:10px;
-left:10px; /* 👈 LEFT SIDE (desktop) */
+left:10px;
 z-index:999;
 display:flex;
 gap:6px;
 }
 
-/* HIT EFFECT */
-.lane.hit{
-box-shadow:0 0 20px #8a2cff;
-}
-
-/* SONG LIST */
-#songs li{
-display:flex;
-justify-content:space-between;
-cursor:pointer;
-margin:6px 0;
-}
-
-#songs li span{
-color:#8a2cff;
-}
-#songDropdown{
-appearance:none;
--webkit-appearance:none;
-text-align:center;
-}
-/* MOBILE */
-
-#helpBtn{
-position:fixed;
-top:10px;
-right:20px;
-z-index:999;
-width:35px;
-height:35px;
-border-radius:50%;
-border:none;
-background:#8a2cff;
-color:white;
-cursor:pointer;
-}
-
-#helpBox{
-position:fixed;
-top:100px;
-right:10px;
-width:230px;
-max-height: 300px;
-background:rgba(0,0,0,0.8);
-padding:15px;
-border-radius:10px;
-z-index:999;
-font-size:14px;
-overflow-y: auto;
-}
-
-#helpBox::-webkit-scrollbar{
-width:6px;
-}
-
-#helpBox::-webkit-scrollbar-thumb{
-background:#8a2cff;
-border-radius:10px;
-}
-
-#helpBox.hide{
-display:none;
-}
-#helpBtn:hover{
-box-shadow:0 0 12px #8a2cff;
-transform:scale(1.1);
-}
-
-/* BACK BUTTON (TOP RIGHT) */
-#backBtn{
-position:fixed;
-top:10px;
-right:20px;
-
-z-index:999;
-
-padding:8px 14px;
-border-radius:20px;
-border:none;
-
-background:rgba(0,0,0,0.6);
-color:white;
-cursor:pointer;
-
-transition:0.3s;
-}
-
-/* HELP BUTTON (BELOW BACK) */
-#helpBtn{
-position:fixed;
-top:55px;
-right:20px;
-
-z-index:999;
-
-width:35px;
-height:35px;
-border-radius:50%;
-border:none;
-
-background:#8a2cff;
-color:white;
-cursor:pointer;
-
-transition:0.3s;
-}
-
-/* OPTIONAL HOVER */
-#backBtn:hover,
-#helpBtn:hover{
-box-shadow:0 0 10px #8a2cff;
-transform:scale(1.05);
-}
-
-/* LEADERBOARD STYLE */
-#leaderboard{
-background:linear-gradient(180deg, rgba(20,20,30,0.9), rgba(10,10,15,0.9));
-border-left:1px solid rgba(255,255,255,0.1);
-width:18%;
-padding:10px;
-
-margin-top:70px; /* 👈 pushes it below buttons */
-box-shadow:inset 0 10px 20px rgba(0,0,0,0.3);
-}
-
-#leaderList{
-list-style:none;
-padding:0;
-margin:0;
-}
-
-#leaderList li{
-display:flex;
-justify-content:space-between;
-padding:10px;
-margin:6px 0;
-border-radius:8px;
-background:rgba(255,255,255,0.05);
-transition:0.3s;
-font-size:15px;
-}
-
-#leaderList li:hover{
-transform:scale(1.03);
-box-shadow:0 0 10px rgba(138,44,255,0.5);
-}
-
-/* TOP 3 */
-.top1{
-background:linear-gradient(90deg, gold, rgba(255,215,0,0.2));
-color:rgb(255, 174, 0);
-font-weight:bold;
-}
-
-.top2{
-background:linear-gradient(90deg, rgb(230, 38, 38), rgb(224, 37, 37));
-color:rgb(221, 81, 46);
-}
-
-.top3{
-background:linear-gradient(90deg, #f08e2c, rgb(205, 128, 50));
-color:rgb(191, 92, 248);
-}
-
-/* CURRENT PLAYER */
-.me{
-outline:2px solid #11c5f1;
-}
-
-/* RANK NUMBER */
-.rank{
-opacity:0.7;
-margin-right:10px;
-}
-
-#leaderList li{
-animation:fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateX(20px);}
-to{opacity:1; transform:translateX(0);}
-}
-
-/* leaderboard style */
-/* CONTAINER */
-#leaderboard{
-background:rgba(63, 63, 216, 0);
-backdrop-filter:blur(12px);
-border-left:1px solid rgba(255, 255, 255, 0.575);
-width:18%;
-padding:10px;
-
-margin-top:70px; /* 👈 pushes it below buttons */
-box-shadow:inset 0 10px 20px rgba(0,0,0,0.3);
-}
-
-/* LIST */
-#leaderList li{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px;
-margin:8px 0;
-border-radius:10px;
-background:rgba(133, 118, 118, 0.041);
-transition:0.3s;
-font-size:15px;
-position:relative;
-overflow:hidden;
-}
-
-/* HOVER */
-#leaderList li:hover{
-transform:translateX(6px) scale(1.03);
-box-shadow:0 0 12px rgba(138,44,255,0.6);
-}
-
-/* TOP 1 (KING MODE) */
-.top1{
-background:linear-gradient(90deg, gold, rgba(255,215,0,0.2));
-color:rgb(255, 148, 25);
-font-weight:bold;
-box-shadow:0 0 15px gold;
-}
-
-/* CROWN ICON */
-.top1::before{
-content:"👑";
-position:absolute;
-left:-2px;
-top:-5px;
-font-size:18px;
-}
-
-/* FIRE EFFECT */
-.top1{
-animation:fireGlow 1.5s infinite alternate;
-}
-
-@keyframes fireGlow{
-from{box-shadow:0 0 10px gold;}
-to{box-shadow:0 0 25px orange;}
-}
-
-/* TOP 2 */
-.top2{
-background:linear-gradient(90deg, silver, rgba(200,200,200,0.2));
-}
-
-/* TOP 3 */
-.top3{
-background:linear-gradient(90deg, #cd7f32, rgba(205,127,50,0.2));
-}
-
-/* CURRENT PLAYER */
-.me{
-outline:2px solid #2cd5ff;
-box-shadow:0 0 10px #2cffed;
-}
-
-/* YOU BADGE */
-.me::after{
-content:"YOU";
-position:absolute;
-right:10px;
-top:50%;
-transform:translateY(-50%);
-font-size:10px;
-background:#000000;
-padding:2px 6px;
-border-radius:6px;
-}
-
-/* SCORE PULSE */
-.score{
-animation:pulseScore 1s infinite alternate;
-}
-
-@keyframes pulseScore{
-from{opacity:0.7;}
-to{opacity:1;}
-}
-
-#helpBox h4{
-margin-top:10px;
-color:#8a2cff;
-}
-
-#helpBox hr{
-border:1px solid rgba(255,255,255,0.1);
-margin:8px 0;
-}
-
-@media (max-width:768px){
-
-  #layout{
-    flex-direction:column;
-    align-items:center;
-  }
-
-  #songs,
-  #leaderboard{
-    width:100%;
-  }
-
-}
-
+/* DROPDOWN DEFAULT */
 #songDropdown{
 display:none;
-}
-#songDropdown option{
-color:white;
 background:#111;
+color:white;
+border:1px solid #8a2cff;
 }
-#leaderToggle{
+
+/* MOBILE */
+@media(max-width:768px){
+
+#layout{
+flex-direction:column;
+}
+
+#songs,#leaderboard{
 display:none;
 }
 
-@media (max-width:768px){
-  #leaderToggle{
-    display:block;
-    position:fixed;
-    top:60px;
-    left:15px;
-    z-index:999;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#8a2cff;
-    color:white;
-    border:none;
-  }
+#game{
+width:100%;
 }
 
-/* ========================= */
-/* 📱 CLEAN MOBILE SYSTEM */
-/* ========================= */
-
-@media (max-width:768px){
-
-  /* LAYOUT */
-  #layout{
-    flex-direction:column;
-    height:auto;
-  }
-
-   #leaderToggle{
-     top:120px;
-     left:10px; /* move left side */
-    display:block;
-  }
-
-  #songs,
-  #leaderboard{
-    display:none;
-  }
-
-  #game{
-    width:100%;
-    height:100vh;
-  }
-
-  /* CONTROLS */
-  #settings{
-top:40px;
+/* CONTROLS */
+#settings{
+top:20px;
 left:50%;
 transform:translateX(-50%);
-z-index:1000;
 }
 
-  /* SCORE */
-  #score{
-top:90px;
-left:10px;
-font-size:14px;
-}
-
-#highScore{
-top:90px;
-right:10px;
-font-size:14px;
-}
-
-  /* DROPDOWN */
-  #songDropdown{
+/* DROPDOWN */
+#songDropdown{
 display:block;
 position:fixed;
-top:90px;
+top:70px;
 left:50%;
 transform:translateX(-50%);
 width:200px;
 height:45px;
 border-radius:25px;
-border:1px solid #8a2cff;
 z-index:9999;
 }
 
-  /* LANES */
-  .lane{
-    font-size:18px;
-  }
-
-  .note{
-    width:80%;
-    height:24px;
-    left:10%;
-  }
-
-  /* HIT LINE */
- #hitLine{
-  bottom:120px;
-  height:5px;
-  box-shadow:0 0 10px white;
+/* SCORE */
+#score{
+top:120px;
+left:10px;
+font-size:14px;
 }
 
-  /* START SCREEN */
-  #startScreen{
-top:50%;
-transform:translate(-50%, -50%);
+#highScore{
+top:120px;
+right:10px;
+font-size:14px;
+}
+
+/* LANES */
+.lane{
+font-size:18px;
+}
+
+/* START */
+#startScreen{
 width:85%;
+top:55%;
 }
 
-  /* BUTTONS */
-  #backBtn{
-    top:50px;
-    right:15px;
-  }
+/* BUTTONS */
+#backBtn{
+top:20px;
+right:10px;
+}
 
-  #helpBtn{
-    top:95px;
-    right:15px;
-  }
+#helpBtn{
+top:70px;
+right:10px;
+}
 
 }
