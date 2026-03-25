@@ -413,3 +413,8 @@ if(dropdown){
     loadLeaderboard();
   };
 }
+  dropdown.onchange = ()=>{
+    audio.src = "songs/" + dropdown.value;
+    loadLeaderboard();
+  };
+}
