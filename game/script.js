@@ -373,6 +373,12 @@ async function loadLeaderboard(){
     const data = await res.json();
 
     const ul = document.getElementById("leaderList");
+    const mobileList = document.getElementById("leaderListMobile");
+if(mobileList) mobileList.innerHTML = "";
+    if(mobileList){
+  const li2 = li.cloneNode(true);
+  mobileList.appendChild(li2);
+}
     ul.innerHTML = "";
 
     if(!data || data.length === 0){
@@ -426,6 +432,13 @@ songs.forEach(s=>{
   opt.innerText = s.replace(".mp3","");
   dropdown.appendChild(opt);
 });
+
+  const leaderBtn = document.getElementById("leaderBtn");
+const leaderPanel = document.getElementById("leaderPanel");
+
+leaderBtn.onclick = ()=>{
+  leaderPanel.classList.toggle("open");
+};
   
 dropdown.onchange = ()=>{
   audio.src = "songs/" + dropdown.value;
