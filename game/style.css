@@ -143,6 +143,7 @@ font-size:16px;
 background:#8a2cff;
 border:none;
 border-radius:10px;
+z-index:20;
 color:white;
 cursor:pointer;
 }
@@ -466,319 +467,53 @@ margin:8px 0;
 }
 
 /* ========================= */
-/* 📱 MOBILE ULTRA OPTIMIZATION */
+/* 📱 CLEAN MOBILE SYSTEM */
 /* ========================= */
 
 @media (max-width:768px){
 
-  /* LAYOUT STACK */
+  /* RESET LAYOUT */
   #layout{
     flex-direction:column;
     height:auto;
   }
 
-  /* HIDE SIDE PANELS (already doing but safer) */
-  #songs,
-  #leaderboard{
+  #songs{
     display:none;
   }
 
-  /* GAME FULL WIDTH */
   #game{
     width:100%;
     height:100vh;
   }
 
-  /* LANES BIGGER FOR TOUCH */
-  .lane{
-    font-size:18px;
-  }
-
-  /* NOTES BIGGER */
-  .note{
-    width:80%;
-    height:24px;
-    left:10%;
-  }
-
-  /* HIT LINE LOWER (thumb reach) */
-  #hitLine{
-    bottom:100px;
-  }
-
-  /* SCORE TEXT */
-  #score{
-    font-size:16px;
-    top:15px;
-    left:15px;
-  }
-
-  #highScore{
-    font-size:16px;
-    top:15px;
-    right:15px;
-  }
-
-  /* COMBO BIGGER */
-  #combo{
-    font-size:36px;
-  }
-
-  #feedback{
-    font-size:22px;
-  }
-
-  /* START SCREEN FIX */
-  #startScreen{
-    width:90%;
-  }
-
-  #startScreen input,
-  #startScreen button{
-    font-size:16px;
-  }
-
-  /* HELP BOX ADJUST */
-  #helpBox{
-    width:90%;
-    right:5%;
-    top:80px;
-  }
-
-  /* BUTTONS SPACING */
-  #backBtn{
-    top:10px;
-    right:15px;
-  }
-
-  #helpBtn{
-    top:55px;
-    right:15px;
-  }
-
-}
-
-/* MOBILE SONG DROPDOWN */
-#songDropdown{
-display:none;
-margin:10px;
-padding:10px;
-border-radius:10px;
-background:black;
-color:white;
-border:1px solid #8a2cff;
-}
-
-/* SHOW ONLY ON MOBILE */
-@media (max-width:768px){
-  #songDropdown{
-    display:block;
-    width:90%;
-  }
-}
-
-@media (max-width:768px){
-
-  #score{
-    top:70px;
-    left:10px;
-    font-size:14px;
-  }
-
-  #highScore{
-    top:70px;
-    right:10px;
-    font-size:14px;
-  }
-
-}
-
-@media (max-width:768px){
-  h1, h2, h3{
-    word-wrap:break-word;
-  }
-}
-
-/* ========================= */
-/* 📱 COMPLETE MOBILE FIX */
-/* ========================= */
-
-@media (max-width:768px){
-
-  /* 🔥 HIDE DESKTOP SONG PANEL */
-  #songs{
-    display:none !important;
-  }
-
-  /* 🔥 STACK LAYOUT */
-  #layout{
-    flex-direction:column;
-    height:auto;
-  }
-
-  /* 🔥 FIX TOP CONTROLS BAR */
+  /* 🎮 TOP CONTROLS */
   #settings{
-    width:95%;
-    left:50%;
-    transform:translateX(-50%);
-    top:10px;
-    justify-content:center;
-  }
-
-  /* 🔥 GAME POSITION */
-  #game{
-    width:100%;
-    height:100vh;
-  }
-
-  /* 🔥 SCORE FIX */
-  #score{
-    top:80px;
-    left:10px;
-    font-size:14px;
-  }
-
-  #highScore{
-    top:80px;
-    right:10px;
-    font-size:14px;
-  }
-
-  /* 🔥 COMBO + FEEDBACK */
-  #combo{
-    font-size:36px;
-  }
-
-  #feedback{
-    font-size:22px;
-  }
-
-  /* 🔥 LANES TOUCH FRIENDLY */
-  .lane{
-    font-size:18px;
-  }
-
-  /* 🔥 NOTES BIGGER */
-  .note{
-    width:80%;
-    height:24px;
-    left:10%;
-  }
-
-  /* 🔥 HIT LINE POSITION */
-  #hitLine{
-position:absolute;
-bottom:110px;
-width:100%;
-height:5px;
-background:white;
-box-shadow:0 0 10px white;
-z-index:10;
-}
-
-  /* 🔥 SONG DROPDOWN POSITION */
-  #songDropdown{
-    display:block;
-    position:absolute;
-    top:120px;
-    left:50%;
-    transform:translateX(-50%);
-    width:90%;
-    padding:10px;
-    border-radius:10px;
-    background:black;
-    color:white;
-    border:1px solid #8a2cff;
-    z-index:20;
-  }
-
-  /* 🔥 START SCREEN FIX */
-  #startScreen{
-    top:55%;
-    width:90%;
-  }
-
-  #startScreen input,
-  #startScreen button{
-    font-size:16px;
-  }
-
-  /* 🔥 HELP BOX MOBILE */
-  #helpBox{
-    width:90%;
-    right:5%;
-    top:80px;
-  }
-
-  /* 🔥 BUTTON ALIGNMENT */
-  #backBtn{
-    top:10px;
-    right:15px;
-  }
-
-  #helpBtn{
-    top:55px;
-    right:15px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  #songDropdown{
     position:fixed;
-    top:70px;
-    left:50%;
-    transform:translateX(-50%);
-
-    width:160px;
-    height:40px;
-
-    border-radius:20px;
-    background:#111;
-    color:white;
-    border:1px solid #8a2cff;
-
-    text-align:center;
-    font-size:14px;
-
+    top:10px;
+    left:10px;
     z-index:1000;
   }
 
-}
-
-@media (max-width:768px){
-
-  #hitLine{
-    bottom:120px; /* bring it up */
-    height:5px;
-    background:#fff;
-    box-shadow:0 0 10px #fff;
+  #backBtn{
+    top:10px;
+    right:10px;
   }
 
-}
+  #helpBtn{
+    top:55px;
+    right:10px;
+  }
 
-#hitLine{
-z-index:5;
-}
-
-.lane{
-z-index:1;
-}
-
-/* 🎵 FINAL MOBILE SONG DROPDOWN */
-@media (max-width:768px){
-
+  /* 🎵 SONG DROPDOWN */
   #songDropdown{
     display:block;
     position:fixed;
+    top:65px;
+    left:10px;
 
-    top:65px; /* below controls */
-    left:50%;
-    transform:translateX(-50%);
-
-    width:150px;
-    height:38px;
+    width:130px;
+    height:34px;
 
     border-radius:20px;
     background:#111;
@@ -786,112 +521,47 @@ z-index:1;
     border:1px solid #8a2cff;
 
     font-size:13px;
-    text-align:center;
-
-    z-index:9999;
+    z-index:1000;
   }
 
-}
-
-/* ========================= */
-/* 🔥 FINAL STABLE FIX (DO NOT BREAK ANYTHING) */
-/* ========================= */
-
-#settings,
-#backBtn,
-#helpBtn{
-z-index:1000;
-}
-
-/* FIX TEXT OVERLAP */
-#score,
-#highScore{
-z-index:10;
-}
-
-/* 🔥 FORCE SINGLE HIT LINE */
-#hitLine{
-position:absolute !important;
-bottom:130px !important;
-height:5px !important;
-background:white !important;
-box-shadow:0 0 8px white !important;
-z-index:50 !important;
-}
-
-/* ========================= */
-/* 📱 MOBILE FINAL FIX */
-/* ========================= */
-
-@media (max-width:768px){
-
-  /* HIDE DESKTOP SONG PANEL ONLY */
-  #songs{
-    display:none !important;
-  }
-
-  /* KEEP GAME CLEAN */
-  #game{
-    width:100% !important;
-    height:100% !important;
-  }
-
-  /* 🎵 SONG DROPDOWN (LEFT) */
-  #songDropdown{
-    display:block !important;
-    position:fixed !important;
-    top:65px !important;
-    left:10px !important;
-
-    width:130px !important;
-    height:34px !important;
-
-    border-radius:20px !important;
-    background:#111 !important;
-    color:white !important;
-    border:1px solid #8a2cff !important;
-
-    font-size:13px !important;
-    z-index:1001 !important;
-  }
-
-  /* 🏆 LEADERBOARD (RIGHT MINI PANEL) */
+  /* 🏆 LEADERBOARD */
   #leaderboard{
-    display:block !important;
-    position:fixed !important;
+    display:block;
+    position:fixed;
+    top:65px;
+    right:10px;
 
-    top:65px !important;
-    right:10px !important;
+    width:130px;
+    max-height:150px;
+    overflow:auto;
 
-    width:130px !important;
-    max-height:150px !important;
-    overflow:auto !important;
+    background:rgba(0,0,0,0.7);
+    border-radius:10px;
+    padding:6px;
 
-    background:rgba(0,0,0,0.7) !important;
-    border-radius:10px !important;
-    font-size:12px !important;
-    padding:5px !important;
-
-    z-index:1001 !important;
+    z-index:1000;
   }
 
-  /* FIX SETTINGS POSITION (LEFT SIDE CLEAN) */
-  #settings{
-    left:10px !important;
-    top:10px !important;
-  }
-
-  /* FIX SCORE POSITION */
+  /* SCORE */
   #score{
-    top:110px !important;
-    left:10px !important;
-    font-size:14px !important;
+    top:110px;
+    left:10px;
+    font-size:14px;
   }
 
   #highScore{
-    top:110px !important;
-    right:10px !important;
-    font-size:14px !important;
+    top:110px;
+    right:10px;
+    font-size:14px;
+  }
+
+  /* 🎯 HIT LINE */
+  #hitLine{
+    bottom:130px !important;
+    height:5px;
+    background:white;
+    box-shadow:0 0 8px white;
+    z-index:10;
   }
 
 }
