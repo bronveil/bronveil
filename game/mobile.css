@@ -69,7 +69,7 @@ top:40%;
 
 /* HIT LINE */
 #hitLine{
-bottom:110px;
+bottom:18vh;
 height:5px;
 box-shadow:0 0 10px white;
 }
