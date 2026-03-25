@@ -413,8 +413,11 @@ if(dropdown){
   }
 
   // load once
-  loadSongsToDropdown();
+loadSongsToDropdown();
 
+// 🔥 ensure refresh on mobile tap
+dropdown.addEventListener("click", loadSongsToDropdown);
+  
   dropdown.onchange = ()=>{
     audio.src = "songs/" + dropdown.value;
     loadLeaderboard();
