@@ -395,14 +395,17 @@ function goBack(){
 }
 
 
-// MOBILE SONG DROPDOWN
+// 🎵 MOBILE SONG DROPDOWN FIX
 const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
+
+  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+
   songs.forEach(s=>{
     const opt = document.createElement("option");
     opt.value = s;
-    opt.innerText = s;
+    opt.innerText = s.replace(".mp3",""); // cleaner name
     dropdown.appendChild(opt);
   });
 
