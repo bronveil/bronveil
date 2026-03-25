@@ -44,7 +44,7 @@ position:relative;
 /* LANES */
 #lanes{
 display:flex;
-height:calc(100vh - 150px);
+height:calc(100vh - 200px);
 }
 
 .lane{
@@ -468,6 +468,22 @@ display:none;
 display:none;
 }
 
+@media (max-width:768px){
+  #leaderToggle{
+    display:block;
+    position:fixed;
+    top:60px;
+    left:15px;
+    z-index:999;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#8a2cff;
+    color:white;
+    border:none;
+  }
+}
+
 /* ========================= */
 /* 📱 CLEAN MOBILE SYSTEM */
 /* ========================= */
@@ -519,7 +535,7 @@ display:none;
   #songDropdown{
     display:block;
     position:fixed;
-    top:140px;
+    top:130px;
     left:50%;
     transform:translateX(-50%);
     width:180px;
@@ -543,11 +559,11 @@ display:none;
   }
 
   /* HIT LINE */
-  #hitLine{
-    bottom:110px;
-    height:5px;
-    box-shadow:0 0 10px white;
-  }
+ #hitLine{
+  bottom:120px;
+  height:5px;
+  box-shadow:0 0 10px white;
+}
 
   /* START SCREEN */
   #startScreen{
