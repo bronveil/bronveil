@@ -114,3 +114,45 @@ right:10px;
 }
 
 }
+
+/* LEADERBOARD BUTTON */
+#leaderBtn{
+position:fixed;
+top:10px;
+left:10px;
+
+width:40px;
+height:40px;
+
+border:none;
+border-radius:50%;
+
+background:#8a2cff;
+color:white;
+font-size:18px;
+
+z-index:1000;
+}
+
+/* PANEL */
+#leaderPanel{
+position:fixed;
+top:0;
+left:-100%;
+
+width:80%;
+height:100%;
+
+background:#111;
+padding:20px;
+
+transition:0.3s ease;
+
+z-index:9999;
+overflow-y:auto;
+}
+
+/* OPEN STATE */
+#leaderPanel.open{
+left:0;
+}
