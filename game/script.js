@@ -403,21 +403,21 @@ if(dropdown){
 
   dropdown.innerHTML = "";
 
-  songs.forEach(s=>{
+  songs.forEach((s, i)=>{
     const opt = document.createElement("option");
     opt.value = s;
     opt.textContent = s.replace(".mp3","");
+    if(i === 0) opt.selected = true; // 🔥 IMPORTANT
     dropdown.appendChild(opt);
   });
 
-  // default select first song (important)
+  // 🔥 FORCE FIRST SONG
   audio.src = "game/songs/" + songs[0];
 
   dropdown.onchange = ()=>{
     audio.src = "game/songs/" + dropdown.value;
     loadLeaderboard();
   };
-
 }
 // MOBILE LEADERBOARD TOGGLE
 const leaderToggle = document.getElementById("leaderToggle");
