@@ -393,3 +393,21 @@ setInterval(()=>{
 function goBack(){
   window.location.href = "../index.html";
 }
+
+
+// MOBILE SONG DROPDOWN
+const dropdown = document.getElementById("songDropdown");
+
+if(dropdown){
+  songs.forEach(s=>{
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.innerText = s;
+    dropdown.appendChild(opt);
+  });
+
+  dropdown.onchange = ()=>{
+    audio.src = "songs/" + dropdown.value;
+    loadLeaderboard();
+  };
+}
