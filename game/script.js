@@ -91,6 +91,7 @@ function startGame(){
 
   document.getElementById("score").innerText = "Score: 0";
   document.getElementById("combo").classList.add("hide");
+  document.getElementById("combo").innerText = "";
   document.getElementById("highScore").innerText = "Best: " + best;
 
   gameStarted = true;
