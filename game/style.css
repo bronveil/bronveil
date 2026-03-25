@@ -232,3 +232,8 @@ box-shadow:0 0 10px rgba(138,44,255,0.5);
 #songDropdown{
 display:none;
 }
+
+#leaderBtn,
+#leaderPanel{
+display:none;
+}
