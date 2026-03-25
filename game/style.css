@@ -717,3 +717,46 @@ border:1px solid #8a2cff;
   }
 
 }
+
+@media (max-width:768px){
+
+  #songDropdown{
+    position:fixed;
+    top:70px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:160px;
+    height:40px;
+
+    border-radius:20px;
+    background:#111;
+    color:white;
+    border:1px solid #8a2cff;
+
+    text-align:center;
+    font-size:14px;
+
+    z-index:1000;
+  }
+
+}
+
+@media (max-width:768px){
+
+  #hitLine{
+    bottom:120px; /* bring it up */
+    height:5px;
+    background:#fff;
+    box-shadow:0 0 10px #fff;
+  }
+
+}
+
+#hitLine{
+z-index:5;
+}
+
+.lane{
+z-index:1;
+}
