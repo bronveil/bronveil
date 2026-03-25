@@ -426,7 +426,7 @@ songs.forEach(s=>{
   opt.innerText = s.replace(".mp3","");
   dropdown.appendChild(opt);
 });
-  dropdown.value = "";
+  
 
 dropdown.onchange = ()=>{
   audio.src = "songs/" + dropdown.value;
