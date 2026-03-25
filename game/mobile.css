@@ -1,35 +1,37 @@
+/* MOBILE ONLY */
 @media (max-width:768px){
 
 /* LAYOUT */
 #layout{
 flex-direction:column;
-height:auto;
+height:100vh;
 }
 
-/* HIDE SIDE PANELS */
+/* REMOVE SIDE PANELS */
 #songs,
 #leaderboard{
 display:none;
 }
 
-/* GAME */
+/* GAME FULLSCREEN */
 #game{
 width:100%;
 height:100vh;
 }
 
-/* CONTROLS */
+/* SETTINGS (CENTER TOP) */
 #settings{
+top:10px;
 left:50%;
 transform:translateX(-50%);
-top:10px;
+gap:8px;
 }
 
 /* SONG DROPDOWN */
 #songDropdown{
 display:block;
-position:fixed;
 
+position:fixed;
 top:60px;
 left:50%;
 transform:translateX(-50%);
@@ -48,18 +50,24 @@ z-index:9999;
 
 /* SCORE */
 #score{
-top:100px;
+top:110px;
 left:10px;
 font-size:14px;
 }
 
 #highScore{
-top:100px;
+top:110px;
 right:10px;
 font-size:14px;
 }
 
-/* HITLINE */
+/* COMBO */
+#combo{
+font-size:32px;
+top:40%;
+}
+
+/* HIT LINE */
 #hitLine{
 bottom:110px;
 height:5px;
@@ -74,14 +82,25 @@ font-size:18px;
 /* NOTES */
 .note{
 width:80%;
-height:24px;
+height:22px;
 left:10%;
 }
 
-/* START */
+/* START SCREEN */
 #startScreen{
 top:55%;
 width:90%;
+}
+
+/* BUTTONS */
+#backBtn{
+top:10px;
+right:10px;
+}
+
+#helpBtn{
+top:55px;
+right:10px;
 }
 
 }
