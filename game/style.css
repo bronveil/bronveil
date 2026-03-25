@@ -92,9 +92,16 @@ font-size:20px;
 position:absolute;
 top:45%;
 left:50%;
-transform:translateX(-50%);
+transform:translateX(-50%) scale(1);
 font-size:48px;
 color:#8a2cff;
+opacity:0;
+transition:0.2s ease;
+}
+
+#combo.show{
+opacity:1;
+transform:translateX(-50%) scale(1.2);
 }
 
 #feedback{
