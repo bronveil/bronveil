@@ -194,3 +194,18 @@ if(leaderBtn){
     leaderPopup.classList.toggle("show");
   };
 }
+
+// PANEL TOGGLE
+const songBtn = document.getElementById("songBtn");
+const leaderBtn = document.getElementById("leaderBtn");
+
+const songPanel = document.getElementById("songPanel");
+const leaderPanel = document.getElementById("leaderPanel");
+
+songBtn.onclick = ()=>{
+  songPanel.classList.toggle("open");
+};
+
+leaderBtn.onclick = ()=>{
+  leaderPanel.classList.toggle("open");
+};
