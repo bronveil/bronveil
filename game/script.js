@@ -339,6 +339,7 @@ async function sendScore(finalScore, streak, mmr){
 
   loadLeaderboard();
 }
+loadLeaderboard();
 
 async function loadLeaderboard(){
 
@@ -399,7 +400,6 @@ function goBack(){
 const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
-
   dropdown.innerHTML = `<option disabled selected>🎵 Songs</option>`;
 
   songs.forEach(s=>{
@@ -413,5 +413,4 @@ if(dropdown){
     audio.src = "songs/" + dropdown.value;
     loadLeaderboard();
   });
-
 }
