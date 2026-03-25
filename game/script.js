@@ -53,10 +53,15 @@ document.getElementById("startBtn").onclick = ()=>{
     return;
   }
 
-  if(!dropdown.value){
+  const selectedSong = dropdown.value;
+
+if(!selectedSong || selectedSong === "Select Song"){
   alert("Select a song first");
   return;
 }
+
+// set song ONLY when starting
+audio.src = "songs/" + selectedSong;
 
   if(usedNames.includes(name) && currentUser !== name){
     alert("Name already taken");
@@ -407,7 +412,7 @@ const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
 
-  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+  dropdown.innerHTML = `<option value="" disabled selected>Select Song</option>`;
 
 songs.forEach(s=>{
   const opt = document.createElement("option");
@@ -415,8 +420,6 @@ songs.forEach(s=>{
   opt.innerText = s.replace(".mp3","");
   dropdown.appendChild(opt);
 });
-
-audio.src = "songs/" + songs[0];
 
 dropdown.onchange = ()=>{
   audio.src = "songs/" + dropdown.value;
