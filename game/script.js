@@ -1,81 +1,149 @@
+// ===== GAME STATE =====
 let score = 0;
 let combo = 0;
-let best = localStorage.getItem("best") || 0;
+let playing = false;
 let gameStarted = false;
+let spawnInterval = null;
+let userScores = JSON.parse(localStorage.getItem("userScores")) || {};
+let best = 0;
+let lastUser = localStorage.getItem("lastUser") || null;
+let currentUser = localStorage.getItem("currentUser") || null;
+let usedNames = JSON.parse(localStorage.getItem("usedNames")) || [];
 
+// 🎵 SAFE SONG DETECTOR (VERY IMPORTANT)
+function getCurrentSong(){
+  if(!audio.src) return "unknown";
+
+  return audio.src.split("/").pop().split("?")[0];
+}
+
+
+// ===== DOM =====
 const audio = document.getElementById("audio");
 document.getElementById("highScore").innerText = "Best: " + best;
 
-/* SONGS */
+// ===== SONGS =====
 const songs = ["song1.mp3","song2.mp3","song3.mp3","song4.mp3"];
-const dropdown = document.getElementById("songDropdown");
+const list = document.getElementById("songList");
 
-/* LOAD */
-window.onload = () => {
+songs.forEach(s=>{
+  const li = document.createElement("li");
+  li.innerHTML = `${s} <span>▶</span>`;
+  li.onclick = ()=>{
+    audio.src = "songs/"+s;
+  };
+  list.appendChild(li);
+});
 
-  /* DROPDOWN */
-  if(dropdown){
-    dropdown.innerHTML = `<option disabled selected>🎵 Songs</option>`;
+// ===== START BUTTON =====
+document.getElementById("startBtn").onclick = ()=>{
 
-    songs.forEach(s=>{
-      const opt = document.createElement("option");
-      opt.value = s;
-      opt.textContent = s.replace(".mp3","");
-      dropdown.appendChild(opt);
-    });
+  const name = document.getElementById("playerName").value.trim();
 
-    dropdown.onchange = ()=>{
-      audio.src = "songs/" + dropdown.value;
-    };
+  if(!name){
+    alert("Enter your name");
+    return;
   }
 
-  loadLeaderboard();
-};
-
-/* START BUTTON */
-document.getElementById("startBtn").onclick = ()=>{
   if(!audio.src){
     alert("Select a song first");
     return;
   }
 
-  document.getElementById("startScreen").style.display = "none";
+  if(usedNames.includes(name) && currentUser !== name){
+    alert("Name already taken");
+    return;
+  }
 
-  audio.play();
-  gameStarted = true;
+  currentUser = name;
+  localStorage.setItem("currentUser", name);
+
+  // 🧠 Detect new user
+if(lastUser !== currentUser){
+  best = 0; // reset score for new user
+}
+
+localStorage.setItem("lastUser", currentUser);
+
+  if(!usedNames.includes(name)){
+    usedNames.push(name);
+    localStorage.setItem("usedNames", JSON.stringify(usedNames));
+  }
+
+  startGame();
 };
 
-/* LEADERBOARD */
-async function loadLeaderboard(){
-  try{
-    const res = await fetch("https://bronveil-server.onrender.com/leaderboard");
-    const data = await res.json();
+// ===== GAME START =====
+function startGame(){
 
-    const list = document.getElementById("leaderList");
-    const mobileList = document.getElementById("leaderListMobile");
+  document.getElementById("startScreen").style.display="none";
 
-    list.innerHTML = "";
-    if(mobileList) mobileList.innerHTML = "";
+  score = 0;
+  combo = 0;
 
-    if(data.length === 0){
-      list.innerHTML = "<li>No scores yet</li>";
-      return;
-    }
+  document.getElementById("score").innerText = "Score: 0";
+  document.getElementById("combo").classList.add("hide");
+  document.getElementById("highScore").innerText = "Best: " + best;
 
-    data.sort((a,b)=>b.score-a.score);
+  gameStarted = true;
+  playing = true;
 
-    data.slice(0,10).forEach((p,i)=>{
-      const html = `<li><span>${i+1}. ${p.name}</span><span>${p.score}</span></li>`;
-      list.innerHTML += html;
-      if(mobileList) mobileList.innerHTML += html;
-    });
+  audio.currentTime = 0;
+  audio.play();
 
-  }catch(e){
-    console.log(e);
+  stopSpawning(); // safety
+  startSpawning();
+}
+
+// ===== SPAWN CONTROL =====
+function startSpawning(){
+  spawnInterval = setInterval(spawnNote, 700);
+}
+
+function stopSpawning(){
+  clearInterval(spawnInterval);
+}
+
+// ===== RESTART =====
+function restartGame(){
+
+  gameStarted = false;
+  playing = false;
+
+  stopSpawning();
+
+  audio.pause();
+  audio.currentTime = 0;
+
+  // remove all notes
+  document.querySelectorAll(".note").forEach(n=>n.remove());
+
+  score = 0;
+  combo = 0;
+
+  document.getElementById("score").innerText = "Score: 0";
+  document.getElementById("combo").classList.add("hide");
+
+  // show start again
+  document.getElementById("startScreen").style.display = "flex";
+}
+
+// ===== CONTROLS =====
+function togglePlay(){
+  if(!playing){
+    audio.play();
+    playing = true;
+  } else {
+    audio.pause();
+    playing = false;
   }
 }
 
-/* SPAWN */
+function setVolume(v){
+  audio.volume = v;
+}
+
+// ===== SPAWN NOTE =====
 function spawnNote(){
   if(!gameStarted) return;
 
@@ -89,10 +157,16 @@ function spawnNote(){
   let y = -20;
 
   function fall(){
-    y+=5;
+
+    if(!gameStarted){
+      note.remove();
+      return;
+    }
+
+    y += 5;
     note.style.top = y + "px";
 
-    if(y>window.innerHeight){
+    if(y > window.innerHeight){
       note.remove();
       combo = 0;
       return;
@@ -104,108 +178,239 @@ function spawnNote(){
   fall();
 }
 
-setInterval(spawnNote,700);
+// ===== FEEDBACK =====
+function showFeedback(text){
+  const f = document.getElementById("feedback");
+  f.innerText = text;
+  f.style.opacity = 1;
+  setTimeout(()=>f.style.opacity=0,400);
+}
 
-/* HIT */
+// ===== HIT SYSTEM =====
 function hitLane(key){
+
   if(!gameStarted) return;
 
   const lane = document.querySelector(`.lane[data-key="${key}"]`);
   if(!lane) return;
 
+  lane.classList.add("hit");
+  setTimeout(()=>lane.classList.remove("hit"),150);
+
   const notes = lane.querySelectorAll(".note");
   const hitLine = document.getElementById("hitLine").getBoundingClientRect();
 
-  let hit=false;
+  let hit = false;
 
   notes.forEach(n=>{
     const rect = n.getBoundingClientRect();
     const diff = Math.abs(rect.top - hitLine.top);
 
-    if(diff < 40){
-      combo++;
-      score += 10;
-      n.remove();
-      hit = true;
-    }
+   if(diff < 30){
+  combo++;
+
+  let multiplier = 1 + Math.floor(combo / 3);
+  if(multiplier > 10) multiplier = 10;
+
+  score += 20 * multiplier;
+
+  showFeedback("PERFECT x" + multiplier);
+  n.remove();
+  hit = true;
+}
+else if(diff < 60){
+  combo++;
+
+  let multiplier = 1 + Math.floor(combo / 3);
+  if(multiplier > 10) multiplier = 10;
+
+  score += 10 * multiplier;
+
+  showFeedback("GOOD x" + multiplier);
+  n.remove();
+  hit = true;
+}
+else if(diff < 60){
+  combo++;
+
+  let multiplier = 1 + Math.floor(combo / 3);
+  if(multiplier > 10) multiplier = 10;
+
+  score += 10 * multiplier;
+
+  showFeedback("GOOD x" + multiplier);
+  n.remove();
+  hit = true;
+}
   });
 
   if(!hit){
-    /* SAVE BEST */
-    if(score > best){
-      best = score;
-      localStorage.setItem("best", best);
-      document.getElementById("highScore").innerText = "Best: " + best;
-    }
 
-    restartGame();
-    return;
+  let finalScore = score;
+
+  if(finalScore > 0){
+
+    let mmr = Math.floor(finalScore / 10 + combo * 2);
+
+    sendScore(finalScore, combo, mmr); // ✅ FIXED
+  }
+
+  if(finalScore > best){
+  best = finalScore;
+
+  userScores[currentUser] = best;
+  localStorage.setItem("userScores", JSON.stringify(userScores));
+
+  document.getElementById("highScore").innerText = "Best: " + best;
+}
+
+  combo = 0;
+  score = 0;
+
+  showFeedback("MISS");
+}
+
+  const comboEl = document.getElementById("combo");
+
+  if(combo > 0){
+    comboEl.classList.remove("hide");
+    comboEl.innerText = combo + "x";
+  } else {
+    comboEl.classList.add("hide");
   }
 
   document.getElementById("score").innerText = "Score: " + score;
 }
 
-/* RESTART */
-function restartGame(){
-
-  score = 0;
-  combo = 0;
-
-  document.getElementById("score").innerText = "Score: 0";
-
-  document.querySelectorAll(".note").forEach(n=>n.remove());
-
-  audio.currentTime = 0;
-  audio.play();
-
-  gameStarted = true;
-
-  loadLeaderboard();
-}
-
-/* CONTROLS */
-function togglePlay(){
-  if(audio.paused) audio.play();
-  else audio.pause();
-}
-
-function setVolume(v){
-  audio.volume = v;
-}
-
-/* INPUT */
-document.addEventListener("keydown", e=>{
+// ===== INPUT =====
+document.addEventListener("keydown",e=>{
   hitLane(e.key.toLowerCase());
 });
 
-/* TOUCH */
 document.querySelectorAll(".lane").forEach(l=>{
-  l.addEventListener("touchstart", ()=>{
+  l.addEventListener("touchstart",(e)=>{
+    e.preventDefault(); // 🔥 important
+
+    l.classList.add("hit");
+    setTimeout(()=>l.classList.remove("hit"),100);
+
     hitLane(l.dataset.key);
   });
 });
 
-/* MOBILE LEADERBOARD */
-const leaderBtn = document.getElementById("leaderBtn");
-const leaderPopup = document.getElementById("leaderPopup");
+// ===== HELP =====
+document.getElementById("helpBtn").onclick = ()=>{
+  document.getElementById("helpBox").classList.toggle("hide");
+};
 
-if(leaderBtn){
-  leaderBtn.onclick = ()=>{
-    leaderPopup.classList.toggle("show");
-  };
+// ===== AUTO USER =====
+if(currentUser){
+  document.getElementById("playerName").value = currentUser;
 }
 
-// PANEL TOGGLE
-const songBtn = document.getElementById("songBtn");
-const leaderBtn = document.getElementById("leaderBtn");
+if(currentUser && userScores[currentUser]){
+  best = userScores[currentUser];
+}else{
+  best = 0;
+}
 
-const songPanel = document.getElementById("songPanel");
-const leaderPanel = document.getElementById("leaderPanel");
+document.getElementById("highScore").innerText = "Best: " + best;
 
-songBtn.onclick = ()=>{
-  songPanel.classList.toggle("open");
-};
 
-leaderBtn.onclick = ()=>{
-  leaderPanel.classList.toggle("open");
-};
+loadLeaderboard();
+
+async function sendScore(finalScore, streak, mmr){
+
+  if(!currentUser) return;
+
+  await fetch("https://bronveil-server.onrender.com/leaderboard",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body: JSON.stringify({
+      name: currentUser,
+      score: finalScore,
+      song: getCurrentSong(), // ✅ FIXED
+      streak: streak,
+      mmr: mmr
+    })
+  });
+
+  loadLeaderboard();
+}
+
+async function loadLeaderboard(){
+
+  const song = getCurrentSong();
+
+  const res = await fetch("https://bronveil-server.onrender.com/leaderboard");
+  const data = await res.json();
+
+  const ul = document.getElementById("leaderList");
+  ul.innerHTML = "";
+
+  // 🎯 If no song selected → show all
+  let filtered = data;
+
+  if(song !== "unknown"){
+    filtered = data.filter(p => p.song === song);
+  }
+
+  if(filtered.length === 0){
+    ul.innerHTML = "<li>No scores yet</li>";
+    return;
+  }
+
+  filtered.forEach((p, index)=>{
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <span>#${index+1} ${p.name}</span>
+      <span>${p.score} 🔥${p.streak || 0} ⭐${p.mmr || 0}</span>
+    `;
+
+    if(index === 0) li.classList.add("top1");
+    if(index === 1) li.classList.add("top2");
+    if(index === 2) li.classList.add("top3");
+
+    if(p.name === currentUser){
+      li.classList.add("me");
+    }
+
+    ul.appendChild(li);
+  });
+}
+
+if(finalScore > 50){
+  sendScore(finalScore);
+}
+
+setInterval(()=>{
+  loadLeaderboard();
+}, 5000); // refresh every 5 sec
+
+function goBack(){
+  window.location.href = "../index.html";
+}
+
+
+// 🎵 MOBILE SONG DROPDOWN FIX
+const dropdown = document.getElementById("songDropdown");
+
+if(dropdown){
+
+  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+
+  songs.forEach(s=>{
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.innerText = s.replace(".mp3",""); // cleaner name
+    dropdown.appendChild(opt);
+  });
+
+  dropdown.onchange = ()=>{
+    audio.src = "songs/" + dropdown.value;
+    loadLeaderboard();
+  };
+}
