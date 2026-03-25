@@ -561,12 +561,23 @@ margin:8px 0;
 /* MOBILE SONG DROPDOWN */
 #songDropdown{
 display:none;
-margin:10px;
-padding:10px;
-border-radius:10px;
-background:black;
-color:white;
-border:1px solid #8a2cff;
+}
+
+@media(max-width:768px){
+  #songDropdown{
+    display:block;
+    position:fixed;
+    top:60px;
+    left:50%;
+    transform:translateX(-50%);
+    width:160px;
+    height:36px;
+    border-radius:20px;
+    background:#111;
+    color:white;
+    border:1px solid #8a2cff;
+    z-index:999;
+  }
 }
 
 /* SHOW ONLY ON MOBILE */
@@ -678,19 +689,25 @@ z-index:10;
 
   /* 🔥 SONG DROPDOWN POSITION */
   #songDropdown{
+display:none;
+}
+
+@media(max-width:768px){
+  #songDropdown{
     display:block;
-    position:absolute;
-    top:120px;
+    position:fixed;
+    top:60px;
     left:50%;
     transform:translateX(-50%);
-    width:90%;
-    padding:10px;
-    border-radius:10px;
-    background:black;
+    width:160px;
+    height:36px;
+    border-radius:20px;
+    background:#111;
     color:white;
     border:1px solid #8a2cff;
-    z-index:20;
+    z-index:999;
   }
+}
 
   /* 🔥 START SCREEN FIX */
   #startScreen{
@@ -725,26 +742,25 @@ z-index:10;
 
 @media (max-width:768px){
 
+ #songDropdown{
+display:none;
+}
+
+@media(max-width:768px){
   #songDropdown{
+    display:block;
     position:fixed;
-    top:70px;
+    top:60px;
     left:50%;
     transform:translateX(-50%);
-
     width:160px;
-    height:40px;
-
+    height:36px;
     border-radius:20px;
     background:#111;
     color:white;
     border:1px solid #8a2cff;
-
-    text-align:center;
-    font-size:14px;
-
-    z-index:1000;
+    z-index:999;
   }
-
 }
 
 @media (max-width:768px){
