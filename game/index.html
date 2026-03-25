@@ -4,7 +4,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="style.css">
 </head>
+<body><!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
+
+<!-- SETTINGS -->
+<div id="settings">
+  <button onclick="togglePlay()">⏯</button>
+  <button onclick="restartGame()">⟳</button>
+  <input type="range" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
+</div>
+
+<button id="backBtn" onclick="goBack()">⟵ Back</button>
+
+<button id="helpBtn">?</button>
+
+<div id="helpBox" class="hide">
+
+  <h3>🎮 How to Play</h3>
+  <p>Press <b>S D J K</b> when notes reach the line.</p>
+  <p>Build combos to increase your score multiplier.</p>
+  <p>Missing a note resets your score and the game.</p>
+
+  <hr>
+
+  <h4>🏆 Leaderboard Info</h4>
+  <p>🔥 <b>Streak</b> → how many hits in a row</p>
+  <p>⭐ <b>MMR</b> → skill rating based on score + combo</p>
+  <p>Higher streak = better ranking</p>
+
+  <hr>
+
+  <h5> Extra info</h5>
+  <p>Game by Broveil</p>
+  <p>Make your Best High score and Rank on Leaderboard</p>
+  <p>Thanks for your time,</p>
+  <p>Hope you enjoying.</p>
+  <p>Give us your feedback on comments on youtube since we don't have any contact info but we will add it soon.</p>
+  <p>~Eujo</p>
+
+</div>
+
+<div id="layout">
+
+<!-- LEFT -->
+<div id="songs">
+  <h2>Songs</h2>
+  <ul id="songList"></ul>
+</div>
+
+<!-- GAME -->
+<div id="game">
+<select id="songDropdown"></select>
+<div id="score">Score: 0</div>
+<div id="combo" class="hide">0x</div>
+<div id="feedback"></div>
+<div id="highScore">Best: 0</div>
+
+<div id="startScreen">
+
+  <input id="playerName" placeholder="Username">
+
+  <button id="startBtn">Start Game</button>
+
+</div>
+
+<div id="lanes">
+  <div class="lane" data-key="s"><span>S</span></div>
+  <div class="lane" data-key="d"><span>D</span></div>
+  <div class="lane" data-key="j"><span>J</span></div>
+  <div class="lane" data-key="k"><span>K</span></div>
+</div>
+
+<div id="hitLine"></div>
+
+</div>
+
+<!-- RIGHT -->
+<div id="leaderboard">
+  <h2>Leaderboard</h2>
+  <ul id="leaderList"></ul>
+</div>
+
+</div>
+
+<audio id="audio" loop></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
 
 <!-- TOP BAR -->
 <div id="topBar">
