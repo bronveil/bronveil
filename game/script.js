@@ -38,8 +38,15 @@ songs.forEach(s=>{
   const li = document.createElement("li");
   li.innerHTML = `${s} <span>▶</span>`;
   li.onclick = ()=>{
-    audio.src = "songs/"+s;
-  };
+  audio.src = "songs/" + s;
+
+  // 🔥 sync dropdown
+  if(dropdown){
+    dropdown.value = s;
+  }
+
+  loadLeaderboard();
+};
   list.appendChild(li);
 });
 
