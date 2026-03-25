@@ -280,12 +280,12 @@ else if(diff < 60){
 
   const comboEl = document.getElementById("combo");
 
-  if(combo > 0){
-    comboEl.classList.remove("hide");
-    comboEl.innerText = combo + "x";
-  } else {
-    comboEl.classList.add("hide");
-  }
+  if(combo >= 3){
+  comboEl.classList.add("show");
+  comboEl.innerText = combo + "x";
+} else {
+  comboEl.classList.remove("show");
+}
 
   document.getElementById("score").innerText = "Score: " + score;
 }
