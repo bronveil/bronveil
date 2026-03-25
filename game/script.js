@@ -93,6 +93,7 @@ function startGame(){
 
   stopSpawning(); // safety
   startSpawning();
+  loadLeaderboard();
 }
 
 // ===== SPAWN CONTROL =====
@@ -107,25 +108,21 @@ function stopSpawning(){
 // ===== RESTART =====
 function restartGame(){
 
-  gameStarted = false;
-  playing = false;
-
-  stopSpawning();
-
-  audio.pause();
-  audio.currentTime = 0;
-
-  // remove all notes
-  document.querySelectorAll(".note").forEach(n=>n.remove());
-
   score = 0;
   combo = 0;
 
   document.getElementById("score").innerText = "Score: 0";
   document.getElementById("combo").classList.add("hide");
 
-  // show start again
-  document.getElementById("startScreen").style.display = "flex";
+  /* REMOVE ALL NOTES */
+  document.querySelectorAll(".note").forEach(n=>n.remove());
+
+  audio.currentTime = 0;
+  audio.play();
+
+  gameStarted = true;
+
+  loadLeaderboard();
 }
 
 // ===== CONTROLS =====
@@ -246,30 +243,19 @@ else if(diff < 60){
 
   if(!hit){
 
-  let finalScore = score;
+  combo = 0;
 
-  if(finalScore > 0){
-
-    let mmr = Math.floor(finalScore / 10 + combo * 2);
-
-    sendScore(finalScore, combo, mmr); // ✅ FIXED
+  /* SAVE BEST */
+  if(score > best){
+    best = score;
+    localStorage.setItem("best", best);
+    document.getElementById("highScore").innerText = "Best: " + best;
   }
 
-  if(finalScore > best){
-  best = finalScore;
-
-  userScores[currentUser] = best;
-  localStorage.setItem("userScores", JSON.stringify(userScores));
-
-  document.getElementById("highScore").innerText = "Best: " + best;
-}
-
-  combo = 0;
-  score = 0;
+  /* 🔥 FULL RESET GAME */
+  restartGame();
 
   showFeedback("MISS");
-
-    loadLeaderboard();
 }
 
   const comboEl = document.getElementById("combo");
@@ -344,46 +330,39 @@ async function sendScore(finalScore, streak, mmr){
 
 async function loadLeaderboard(){
 
-  const song = getCurrentSong();
+  try{
+    const res = await fetch("https://bronveil-server.onrender.com/leaderboard");
+    const data = await res.json();
 
-  const res = await fetch("http://127.0.0.1:8000/leaderboard");
-  const data = await res.json();
+    const list = document.getElementById("leaderList");
+    if(!list) return;
 
-  const ul = document.getElementById("leaderList");
-  ul.innerHTML = "";
+    list.innerHTML = "";
 
-  // 🎯 If no song selected → show all
-  let filtered = data;
-
-  if(song !== "unknown"){
-    filtered = data.filter(p => p.song === song);
-  }
-
-  if(filtered.length === 0){
-    ul.innerHTML = "<li>No scores yet</li>";
-    return;
-  }
-
-  filtered.forEach((p, index)=>{
-    const li = document.createElement("li");
-
-    li.innerHTML = `
-      <span>#${index+1} ${p.name}</span>
-      <span>${p.score} 🔥${p.streak || 0} ⭐${p.mmr || 0}</span>
-    `;
-
-    if(index === 0) li.classList.add("top1");
-    if(index === 1) li.classList.add("top2");
-    if(index === 2) li.classList.add("top3");
-
-    if(p.name === currentUser){
-      li.classList.add("me");
+    if(data.length === 0){
+      list.innerHTML = "<li>No scores yet</li>";
+      return;
     }
 
-    ul.appendChild(li);
-  });
-}
+    data.sort((a,b)=>b.score-a.score);
 
+    data.slice(0,10).forEach((p,i)=>{
+
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <span>${i+1}. ${p.name}</span>
+        <span>${p.score}</span>
+      `;
+
+      list.appendChild(li);
+    });
+
+  }catch(err){
+    console.log("Leaderboard error", err);
+  }
+
+}
 if(finalScore > 50){
   sendScore(finalScore);
 }
@@ -449,3 +428,7 @@ if(closeLeader){
 window.onload = ()=>{
   loadLeaderboard();
 };
+
+window.addEventListener("load", ()=>{
+  loadLeaderboard();
+});
