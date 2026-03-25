@@ -437,17 +437,36 @@ songs.forEach(s=>{
   dropdown.appendChild(opt);
 });
 
-  const leaderBtn = document.getElementById("leaderBtn");
-const leaderPanel = document.getElementById("leaderPanel");
+ if(window.innerWidth <= 768){
 
-if(window.innerWidth <= 768 && leaderBtn && leaderPanel){
-  leaderBtn.onclick = ()=>{
-    leaderPanel.classList.toggle("open");
-  };
+  const leaderBtn = document.getElementById("leaderBtn");
+  const leaderPanel = document.getElementById("leaderPanel");
+
+  if(leaderBtn && leaderPanel){
+
+    leaderBtn.onclick = ()=>{
+      leaderPanel.classList.add("open");
+    };
+
+  }
+
 }
   
 dropdown.onchange = ()=>{
   audio.src = "songs/" + dropdown.value;
   loadLeaderboard();
 };
+}
+
+if(window.innerWidth <= 768){
+
+  const closeBtn = document.getElementById("closeLeader");
+  const leaderPanel = document.getElementById("leaderPanel");
+
+  if(closeBtn && leaderPanel){
+    closeBtn.onclick = ()=>{
+      leaderPanel.classList.remove("open");
+    };
+  }
+
 }
