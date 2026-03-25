@@ -69,9 +69,19 @@ top:40%;
 
 /* HIT LINE */
 #hitLine{
-bottom:25vh;
+position:absolute;
+
+top:65%;   /* 🔥 this is the key */
+
+transform:translateY(-50%);
+
 height:5px;
+width:100%;
+
+background:white;
 box-shadow:0 0 10px white;
+
+z-index:10;
 }
 
 /* LANES */
