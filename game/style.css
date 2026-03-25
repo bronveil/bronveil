@@ -598,3 +598,122 @@ border:1px solid #8a2cff;
     word-wrap:break-word;
   }
 }
+
+/* ========================= */
+/* 📱 COMPLETE MOBILE FIX */
+/* ========================= */
+
+@media (max-width:768px){
+
+  /* 🔥 HIDE DESKTOP SONG PANEL */
+  #songs{
+    display:none !important;
+  }
+
+  /* 🔥 STACK LAYOUT */
+  #layout{
+    flex-direction:column;
+    height:auto;
+  }
+
+  /* 🔥 FIX TOP CONTROLS BAR */
+  #settings{
+    width:95%;
+    left:50%;
+    transform:translateX(-50%);
+    top:10px;
+    justify-content:center;
+  }
+
+  /* 🔥 GAME POSITION */
+  #game{
+    width:100%;
+    height:100vh;
+    margin-top:70px;
+  }
+
+  /* 🔥 SCORE FIX */
+  #score{
+    top:80px;
+    left:10px;
+    font-size:14px;
+  }
+
+  #highScore{
+    top:80px;
+    right:10px;
+    font-size:14px;
+  }
+
+  /* 🔥 COMBO + FEEDBACK */
+  #combo{
+    font-size:36px;
+  }
+
+  #feedback{
+    font-size:22px;
+  }
+
+  /* 🔥 LANES TOUCH FRIENDLY */
+  .lane{
+    font-size:18px;
+  }
+
+  /* 🔥 NOTES BIGGER */
+  .note{
+    width:80%;
+    height:24px;
+    left:10%;
+  }
+
+  /* 🔥 HIT LINE POSITION */
+  #hitLine{
+    bottom:100px;
+  }
+
+  /* 🔥 SONG DROPDOWN POSITION */
+  #songDropdown{
+    display:block;
+    position:absolute;
+    top:120px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    padding:10px;
+    border-radius:10px;
+    background:black;
+    color:white;
+    border:1px solid #8a2cff;
+    z-index:20;
+  }
+
+  /* 🔥 START SCREEN FIX */
+  #startScreen{
+    top:55%;
+    width:90%;
+  }
+
+  #startScreen input,
+  #startScreen button{
+    font-size:16px;
+  }
+
+  /* 🔥 HELP BOX MOBILE */
+  #helpBox{
+    width:90%;
+    right:5%;
+    top:80px;
+  }
+
+  /* 🔥 BUTTON ALIGNMENT */
+  #backBtn{
+    top:10px;
+    right:15px;
+  }
+
+  #helpBtn{
+    top:55px;
+    right:15px;
+  }
+
+}
