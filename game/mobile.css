@@ -71,7 +71,7 @@ top:40%;
 #hitLine{
 position:absolute;
 
-top:55%;   /* 🔥 this is the key */
+top:60%;   /* 🔥 this is the key */
 
 transform:translateY(-50%);
 
