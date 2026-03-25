@@ -1,0 +1,55 @@
+/* MOBILE ONLY */
+@media (max-width:768px){
+
+  /* FULLSCREEN GAME */
+  #layout{
+    flex-direction:column;
+  }
+
+  #songs, #leaderboard{
+    display:none;
+  }
+
+  #game{
+    width:100%;
+    height:100vh;
+  }
+
+  /* CONTROLS CENTER */
+  #settings{
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  /* DROPDOWN */
+  #songDropdown{
+    display:block;
+    position:fixed;
+    top:70px;
+    left:50%;
+    transform:translateX(-50%);
+    width:200px;
+    height:45px;
+    z-index:9999;
+  }
+
+  /* SCORE */
+  #score{
+    top:120px;
+    left:10px;
+    font-size:14px;
+  }
+
+  #highScore{
+    top:120px;
+    right:10px;
+    font-size:14px;
+  }
+
+  /* HITLINE */
+  #hitLine{
+    bottom:110px;
+  }
+
+}
