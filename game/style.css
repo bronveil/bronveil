@@ -44,7 +44,7 @@ position:relative;
 /* LANES */
 #lanes{
 display:flex;
-height:100%;
+height:calc(100vh - 180px);
 }
 
 .lane{
@@ -173,7 +173,11 @@ margin:6px 0;
 #songs li span{
 color:#8a2cff;
 }
-
+#songDropdown{
+appearance:none;
+-webkit-appearance:none;
+text-align:center;
+}
 /* MOBILE */
 
 #helpBtn{
