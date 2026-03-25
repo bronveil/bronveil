@@ -280,6 +280,12 @@ border-radius:40px;
 #typeText{
 animation:floatTitle 6s ease-in-out infinite;
 }
+@media (max-width:768px){
+  #typeText{
+    font-size:40px;
+    letter-spacing:4px;
+  }
+}
 
 @keyframes floatTitle{
 0%{transform:translateY(0);}
@@ -474,4 +480,16 @@ transform:translate(-50%, -50%);
 
 #particlesCanvas{
 mix-blend-mode:screen;
+}
+
+@media (max-width:768px){
+  #pet{
+    display:none;
+  }
+}
+
+@media (max-width:768px){
+  h1, h2, h3{
+    word-wrap:break-word;
+  }
 }
