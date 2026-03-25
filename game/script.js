@@ -396,19 +396,24 @@ function goBack(){
 
 
 // 🎵 MOBILE SONG DROPDOWN FIX
+// 🎵 MOBILE SONG DROPDOWN FIX (STABLE)
 const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
 
-  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
-  dropdown.style.zIndex = "2000";
+  function loadSongsToDropdown(){
+    dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
 
-  songs.forEach(s=>{
-    const opt = document.createElement("option");
-    opt.value = s;
-    opt.innerText = s.replace(".mp3",""); // cleaner name
-    dropdown.appendChild(opt);
-  });
+    songs.forEach(s=>{
+      const opt = document.createElement("option");
+      opt.value = s;
+      opt.innerText = s.replace(".mp3","");
+      dropdown.appendChild(opt);
+    });
+  }
+
+  // load once
+  loadSongsToDropdown();
 
   dropdown.onchange = ()=>{
     audio.src = "songs/" + dropdown.value;
