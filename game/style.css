@@ -6,35 +6,11 @@ font-family:sans-serif;
 overflow:hidden;
 }
 
-/* TOP BAR */
-#topBar{
-position:fixed;
-top:10px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:10px;
-z-index:1000;
-}
-
-/* DROPDOWN */
-#songDropdown{
-position:fixed;
-top:60px;
-left:50%;
-transform:translateX(-50%);
-z-index:1000;
-padding:8px;
-border-radius:20px;
-background:#111;
-color:white;
-border:1px solid #8a2cff;
-}
-
-/* GAME */
+/* GAME LAYOUT */
 #game{
 height:100vh;
 position:relative;
+overflow:hidden;
 }
 
 #lanes{
@@ -48,6 +24,7 @@ border:1px solid rgba(255,255,255,0.1);
 display:flex;
 justify-content:center;
 align-items:flex-end;
+font-size:24px;
 }
 
 .lane span{
@@ -76,8 +53,8 @@ box-shadow:0 0 10px white;
 }
 
 /* UI */
-#score{position:fixed;top:100px;left:10px;}
-#highScore{position:fixed;top:100px;right:10px;}
+#score{position:fixed;top:120px;left:10px;}
+#highScore{position:fixed;top:120px;right:10px;}
 
 #combo{
 position:fixed;
@@ -106,16 +83,40 @@ flex-direction:column;
 gap:10px;
 }
 
+/* SETTINGS */
+#settings{
+position:fixed;
+top:10px;
+left:10px;
+display:flex;
+gap:10px;
+z-index:1000;
+}
+
+/* SONG DROPDOWN */
+#songDropdown{
+position:fixed;
+top:60px;
+left:50%;
+transform:translateX(-50%);
+z-index:1000;
+padding:10px;
+border-radius:20px;
+background:#111;
+color:white;
+border:1px solid #8a2cff;
+}
+
 /* LEADERBOARD */
 #leaderboard{
 position:fixed;
 right:0;
 top:150px;
 width:200px;
-max-height:300px;
-overflow:auto;
 background:#111;
 padding:10px;
+max-height:300px;
+overflow:auto;
 }
 
 /* MOBILE */
@@ -130,6 +131,11 @@ max-height:200px;
 
 #songDropdown{
 top:80px;
+}
+
+#settings{
+left:50%;
+transform:translateX(-50%);
 }
 
 }
