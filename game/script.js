@@ -403,6 +403,7 @@ if(dropdown){
 
   function loadSongsToDropdown(){
     dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+    console.log("Songs loaded:", songs);
 
     songs.forEach(s=>{
       const opt = document.createElement("option");
