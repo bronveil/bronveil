@@ -323,7 +323,7 @@ async function sendScore(finalScore, streak, mmr){
 
   if(!currentUser) return;
 
-  await fetch("http://127.0.0.1:8000/leaderboard",{
+  await fetch("https://bronveil-server.onrender.com/leaderboard",{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -344,7 +344,7 @@ async function loadLeaderboard(){
 
   const song = getCurrentSong();
 
-  const res = await fetch("http://127.0.0.1:8000/leaderboard");
+  const res = await fetch("https://bronveil-server.onrender.com/leaderboard");
   const data = await res.json();
 
   const ul = document.getElementById("leaderList");
