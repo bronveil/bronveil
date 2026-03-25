@@ -401,6 +401,7 @@ const dropdown = document.getElementById("songDropdown");
 if(dropdown){
 
   dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+  dropdown.style.zIndex = "2000";
 
   songs.forEach(s=>{
     const opt = document.createElement("option");
