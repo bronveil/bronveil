@@ -373,13 +373,10 @@ async function loadLeaderboard(){
     const data = await res.json();
 
     const ul = document.getElementById("leaderList");
-    const mobileList = document.getElementById("leaderListMobile");
+const mobileList = document.getElementById("leaderListMobile");
+
+ul.innerHTML = "";
 if(mobileList) mobileList.innerHTML = "";
-    if(mobileList){
-  const li2 = li.cloneNode(true);
-  mobileList.appendChild(li2);
-}
-    ul.innerHTML = "";
 
     if(!data || data.length === 0){
       ul.innerHTML = "<li>No scores yet</li>";
@@ -403,6 +400,13 @@ if(mobileList) mobileList.innerHTML = "";
       }
 
       ul.appendChild(li);
+      ul.appendChild(li);
+
+// 🔥 sync mobile panel
+if(mobileList){
+  const li2 = li.cloneNode(true);
+  mobileList.appendChild(li2);
+}
     });
 
   }catch(e){
@@ -436,9 +440,11 @@ songs.forEach(s=>{
   const leaderBtn = document.getElementById("leaderBtn");
 const leaderPanel = document.getElementById("leaderPanel");
 
-leaderBtn.onclick = ()=>{
-  leaderPanel.classList.toggle("open");
-};
+if(window.innerWidth <= 768 && leaderBtn && leaderPanel){
+  leaderBtn.onclick = ()=>{
+    leaderPanel.classList.toggle("open");
+  };
+}
   
 dropdown.onchange = ()=>{
   audio.src = "songs/" + dropdown.value;
