@@ -30,7 +30,7 @@ songs.forEach(s=>{
   const li = document.createElement("li");
   li.innerHTML = `${s} <span>▶</span>`;
   li.onclick = ()=>{
-    audio.src = "songs/"+s;
+    audio.src = "game/songs/"+s;
   };
   list.appendChild(li);
 });
@@ -419,7 +419,7 @@ loadSongsToDropdown();
 dropdown.addEventListener("click", loadSongsToDropdown);
   
   dropdown.onchange = ()=>{
-    audio.src = "songs/" + dropdown.value;
+    audio.src = "game/songs/" + dropdown.value;
     loadLeaderboard();
   };
 }
