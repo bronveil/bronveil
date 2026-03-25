@@ -288,7 +288,12 @@ document.addEventListener("keydown",e=>{
 });
 
 document.querySelectorAll(".lane").forEach(l=>{
-  l.addEventListener("touchstart",()=>{
+  l.addEventListener("touchstart",(e)=>{
+    e.preventDefault(); // 🔥 important
+
+    l.classList.add("hit");
+    setTimeout(()=>l.classList.remove("hit"),100);
+
     hitLane(l.dataset.key);
   });
 });
@@ -318,7 +323,7 @@ async function sendScore(finalScore, streak, mmr){
 
   if(!currentUser) return;
 
-  await fetch("https://bronveil-server.onrender.com/leaderboard",{
+  await fetch("http://127.0.0.1:8000/leaderboard",{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -339,7 +344,7 @@ async function loadLeaderboard(){
 
   const song = getCurrentSong();
 
-  const res = await fetch("https://bronveil-server.onrender.com/leaderboard");
+  const res = await fetch("http://127.0.0.1:8000/leaderboard");
   const data = await res.json();
 
   const ul = document.getElementById("leaderList");
