@@ -565,3 +565,74 @@ margin:8px 0;
   }
 
 }
+
+/* 🏆 MOBILE LEADER ICON */
+#leaderBtn{
+display:none;
+}
+
+#leaderPopup{
+display:none;
+}
+
+#leaderPopup.hide{
+display:none;
+}
+
+@media (max-width:768px){
+
+  /* HIDE DESKTOP PANEL */
+  #leaderboard{
+    display:none !important;
+  }
+
+  /* SHOW ICON */
+  #leaderBtn{
+    display:block;
+    position:fixed;
+    top:65px;
+    right:10px;
+
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:none;
+
+    background:#8a2cff;
+    color:white;
+    font-size:18px;
+
+    z-index:1000;
+  }
+
+  /* POPUP PANEL */
+  #leaderPopup{
+    display:block;
+    position:fixed;
+
+    top:120px;
+    right:10px;
+
+    width:220px;
+    max-height:300px;
+
+    overflow:auto;
+
+    background:rgba(0,0,0,0.9);
+    border-radius:10px;
+    padding:10px;
+
+    z-index:1000;
+  }
+
+  #leaderPopup.hide{
+    display:none;
+  }
+
+  .leaderHeader{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+
+}
