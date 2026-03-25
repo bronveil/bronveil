@@ -400,17 +400,18 @@ const dropdown = document.getElementById("songDropdown");
 
 if(dropdown){
 
-  dropdown.innerHTML = `<option disabled selected>Select Song</option>`;
+  dropdown.innerHTML = `<option disabled selected>🎵 Songs</option>`;
 
   songs.forEach(s=>{
     const opt = document.createElement("option");
     opt.value = s;
-    opt.innerText = s.replace(".mp3",""); // cleaner name
+    opt.textContent = s.replace(".mp3","");
     dropdown.appendChild(opt);
   });
 
-  dropdown.onchange = ()=>{
+  dropdown.addEventListener("change", ()=>{
     audio.src = "songs/" + dropdown.value;
     loadLeaderboard();
-  };
+  });
+
 }
