@@ -339,7 +339,6 @@ async function sendScore(finalScore, streak, mmr){
 
   loadLeaderboard();
 }
-loadLeaderboard();
 
 async function loadLeaderboard(){
 
