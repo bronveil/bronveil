@@ -6,31 +6,64 @@ font-family:Poppins;
 overflow:hidden;
 }
 
-/* LAYOUT */
-#layout{
+/* TOP BAR */
+#topBar{
+position:fixed;
+top:0;
+width:100%;
 display:flex;
-height:100vh;
+justify-content:space-between;
+align-items:center;
+padding:10px;
+z-index:1000;
 }
 
-/* LEFT (SONGS) */
-#songs{
-width:18%;
-padding:10px;
+#centerControls{
+display:flex;
+gap:10px;
+}
+
+button{
+background:#8a2cff;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* PANELS */
+.panel{
+position:fixed;
+top:0;
+left:-260px;
+width:260px;
+height:100%;
+background:#111;
+padding:15px;
+transition:0.3s;
+z-index:999;
 overflow:auto;
 }
 
-/* RIGHT (LEADERBOARD) */
-#leaderboard{
-width:18%;
-padding:10px;
-overflow:auto;
-border-left:1px solid rgba(255,255,255,0.1);
+.panel.right{
+left:auto;
+right:-260px;
 }
 
-/* GAME CENTER */
+.panel.open{
+left:0;
+}
+
+.panel.right.open{
+right:0;
+}
+
+/* GAME */
 #game{
-width:64%;
 position:relative;
+width:100%;
+height:100vh;
 }
 
 /* LANES */
@@ -42,18 +75,16 @@ height:100%;
 .lane{
 flex:1;
 border:1px solid rgba(255,255,255,0.1);
-position:relative;
 display:flex;
-align-items:flex-end;
 justify-content:center;
+align-items:flex-end;
 }
 
 .note{
 position:absolute;
 width:70%;
-height:18px;
+height:20px;
 background:#8a2cff;
-top:-20px;
 left:15%;
 border-radius:6px;
 }
@@ -61,24 +92,15 @@ border-radius:6px;
 /* HIT LINE */
 #hitLine{
 position:absolute;
-bottom:130px;
+bottom:120px;
 width:100%;
-height:4px;
+height:5px;
 background:white;
 }
 
 /* UI */
-#score{
-position:absolute;
-top:20px;
-left:20px;
-}
-
-#highScore{
-position:absolute;
-top:20px;
-right:20px;
-}
+#score{position:absolute;top:60px;left:10px;}
+#highScore{position:absolute;top:60px;right:10px;}
 
 #combo{
 position:absolute;
@@ -94,15 +116,6 @@ position:absolute;
 top:35%;
 left:50%;
 transform:translateX(-50%);
-font-size:25px;
-}
-
-/* SETTINGS */
-#settings{
-position:fixed;
-top:10px;
-left:10px;
-z-index:10;
 }
 
 /* START */
@@ -111,7 +124,6 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-z-index:20;
 display:flex;
 flex-direction:column;
 gap:10px;
@@ -120,67 +132,16 @@ gap:10px;
 /* MOBILE */
 @media(max-width:768px){
 
-#layout{
-flex-direction:column;
-}
+  #topBar{
+    padding:8px;
+  }
 
-#songs{
-display:none;
-}
+  button{
+    padding:6px 10px;
+  }
 
-#leaderboard{
-display:none;
-}
-
-#game{
-width:100%;
-height:100vh;
-}
-
-/* DROPDOWN */
-#songDropdown{
-display:block;
-position:fixed;
-top:60px;
-left:10px;
-width:130px;
-height:34px;
-background:#111;
-color:white;
-border:1px solid #8a2cff;
-border-radius:20px;
-}
-
-/* LEADER BUTTON */
-#leaderBtn{
-display:block;
-position:fixed;
-top:60px;
-right:10px;
-width:40px;
-height:40px;
-border-radius:50%;
-background:#8a2cff;
-color:white;
-border:none;
-}
-
-/* POPUP */
-#leaderPopup{
-position:fixed;
-top:110px;
-right:10px;
-width:200px;
-max-height:250px;
-overflow:auto;
-background:black;
-padding:10px;
-border-radius:10px;
-display:none;
-}
-
-#leaderPopup.show{
-display:block;
-}
+  #hitLine{
+    bottom:110px;
+  }
 
 }
