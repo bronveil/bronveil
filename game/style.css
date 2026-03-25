@@ -44,7 +44,7 @@ position:relative;
 /* LANES */
 #lanes{
 display:flex;
-height:calc(100vh - 160px);
+height:calc(100vh - 220px);
 }
 
 .lane{
@@ -76,7 +76,7 @@ border-radius:6px;
 /* HIT LINE */
 #hitLine{
 position:absolute;
-bottom:120px;
+bottom:130px;
 width:100%;
 height:4px;
 background:white;
@@ -121,7 +121,7 @@ transition:0.3s;
 /* START SCREEN */
 #startScreen{
 position:absolute;
-top:50%;
+top:40%;
 left:50%;
 transform:translate(-50%, -50%);
 z-index:10;
@@ -546,7 +546,7 @@ display:none;
     background:#111;
     color:white;
     border:1px solid #8a2cff;
-    z-index:2000;
+    z-index:9999;
   }
 
   /* LANES */
